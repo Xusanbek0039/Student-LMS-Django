@@ -21,7 +21,7 @@
       <img
         src="{% static 'img/logo.png' %}"
         width="150px"
-        alt="Logo Django LMS"
+        alt="Student LMS"
       />
       <p class="text-orange">
         <mark>
@@ -65,14 +65,14 @@
       {% endif %} {% if request.user.is_lecturer or request.user.is_student %}
       <li class="{% if request.path == ucl %}active{% endif %}">
         <a href="{% url 'user_course_list' %}"
-          ><i class="fas fa-book"></i>My Courses</a
+          ><i class="fas fa-book"></i>Mening kurslarim</a
         >
       </li>
       {% endif %}
 
       <li class="{% if request.path == pro %}active{% endif %}">
         <a href="{% url 'programs' %}"
-          ><i class="fas fa-book-open"></i>Programs & Courses</a
+          ><i class="fas fa-book-open"></i></a
         >
       </li>
 
