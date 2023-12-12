@@ -22,11 +22,10 @@
 				</button>
 				<div class="dropdown-menu" style="min-width: 14rem !important;" aria-labelledby="dropdownMenuButton">
 					<p class="container text-muted-xs text-center">
-						Last login: {{ request.user.last_login|date }}</p>
+						Oxirgi login: {{ request.user.last_login|date }}</p>
 
 					{% if request.user.is_lecturer or request.user.is_student %}
-					<a class="dropdown-item" href="{% url 'user_course_list' %}"><i class="fas fa-book"></i>My
-						Courses</a>
+					<a class="dropdown-item" href="{% url 'user_course_list' %}"><i class="fas fa-book"></i>Mening kurslarim</a>
 					{% endif %}
 
 					{% if request.user.is_superuser %}
@@ -34,12 +33,12 @@
 						Panel</a>
 					{% endif %}
 
-					<a class="dropdown-item" href="{% url 'profile' %}"><i class="fas fa-user"></i>Profile</a>
-					<a class="dropdown-item" href="{% url 'edit_profile' %}"><i class="fas fa-cogs"></i>Setting</a>
+					<a class="dropdown-item" href="{% url 'profile' %}"><i class="fas fa-user"></i>Hisob</a>
+					<a class="dropdown-item" href="{% url 'edit_profile' %}"><i class="fas fa-cogs"></i>Sozlamalar</a>
 					<hr>
 					<div style="display: flex; justify-content: center; align-items: center;">
 						<a class="btn btn-secondary" href="{% url 'logout' %}">
-							<i class="fas fa-sign-out-alt"></i> Signout
+							<i class="fas fa-sign-out-alt"></i> Chiqish
 						</a>
 					</div>
 				</div>
