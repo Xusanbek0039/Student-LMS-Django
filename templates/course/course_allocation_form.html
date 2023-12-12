@@ -4,8 +4,8 @@
 {% load static %}
 
 {% block content %}
-<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Home</a> <i>&rsaquo;</i> 
-    <a href="{% url 'course_allocation_view' %}" class="primary1">Allocations</a> <i>&rsaquo;</i> Add</div>
+<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Bosh saxifa</a> <i>&rsaquo;</i> 
+    <a href="{% url 'course_allocation_view' %}" class="primary1">Ajratish</a> <i>&rsaquo;</i> Qo'shish</div>
 <br>
 
 {% if messages %}
@@ -25,7 +25,7 @@
 <div class="row">
     <div class="col-md-6 mx-auto">
         <div class="card">
-            <p class="form-title">Course Allocation Form</p>
+            <p class="form-title">Kurslarga taqsimlash shakli!</p>
             <div class="p-3">
                 <form action="" method="POST">{% csrf_token %}
                     <!-- {{ form|crispy }} -->
@@ -40,7 +40,7 @@
                         
                     {% for course in form.courses.all %}{{ course }}{% endfor %}
 
-                    <input class="btn btn-outline-primary" type="submit" value="Save">
+                    <input class="btn btn-outline-primary" type="submit" value="Saqlash">
                 </form>
             </div>
         </div>

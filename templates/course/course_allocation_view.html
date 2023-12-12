@@ -2,13 +2,13 @@
 {% block title %}{{ title }}{% endblock title %}
 
 {% block content %}
-<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Home</a> <i>&rsaquo;</i> Allocation list</div>
+<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Bosh saxifa</a> <i>&rsaquo;</i> Ajratish ro'yxati</div>
 
 {% if request.user.is_superuser %}
-<a class="add-button" href="{% url 'course_allocation' %}"><i class="fas fa-plus"></i>Allocate Now</a>
+<a class="add-button" href="{% url 'course_allocation' %}"><i class="fas fa-plus"></i>Hozir ajratish</a>
 {% endif %}
 
-<div class="title-1"><i class="fas fa-tasks"></i>Course Allocation List</div>
+<div class="title-1"><i class="fas fa-tasks"></i>Kurslarga ajratish ro'yxati</div>
 <div class="title-line"></div>
 
 {% if messages %}
@@ -27,10 +27,10 @@
 
 <div class="content-center">
     <form class="search-form" action="" method="POST">{% csrf_token %}
-        <input class="au-input" type="text" name="lecturer" placeholder="Lecturer" value="{{ request.GET.lecturer }}"/>
-        <input class="au-input" type="text" name="course" placeholder="Course" value="{{ request.GET.course }}"/>
+        <input class="au-input" type="text" name="lecturer" placeholder="O'qituvchi" value="{{ request.GET.lecturer }}"/>
+        <input class="au-input" type="text" name="course" placeholder="Kurs" value="{{ request.GET.course }}"/>
         <button class="btn btn-light" type="submit">
-            <i class="fas fa-search"></i> filter
+            <i class="fas fa-search"></i> Filtrlash
         </button>
     </form>
 </div>
@@ -39,11 +39,11 @@
     <table class="table table-light table-striped">
         <thead>
             <tr>
-                <th>#</th>
-                <th>Lecturer</th>
-                <th>Courses</th>
+                <th>№</th>
+                <th>O'qituvchi</th>
+                <th>Kurslar</th>
                 {% if request.user.is_superuser %}
-                <th>Action</th>
+                <th>Urinishlar</th>
                 {% endif %}
             </tr>
         </thead>
@@ -58,10 +58,10 @@
                 </td>
                 {% if request.user.is_superuser %}
                 <td><div class="update-delete">
-                    <a href="{% url 'edit_allocated_course' pk=course.pk %}" class="update" title="Edit or Update">
+                    <a href="{% url 'edit_allocated_course' pk=course.pk %}" class="update" title="Taxrirlash yoki qayta yuklash">
                         <i class="fas fa-edit"></i>
                     </a>
-                    <a href="{% url 'course_deallocate' pk=course.pk %}" class="delete" title="Deallocate">
+                    <a href="{% url 'course_deallocate' pk=course.pk %}" class="delete" title="Ajratish">
                         <i class="fas fa-trash-alt"></i>
                     </a>
                     </div>
@@ -73,11 +73,11 @@
               <td></td>
               <td></td>
               <td>
-              <span class="text-danger"><i class="far fa-frown"></i>No Course Allocated.
+              <span class="text-danger"><i class="far fa-frown"></i>Afsuski hozircha xech qanday kurslar mavjud emas!
                 {% if request.user.is_superuser %}
                 <a href="{% url 'course_allocation' %}">
                 <i class="primary" style="font-size: 22px;">
-                   Allocate now
+                   Kursga ajratish
                 </i>
                 {% endif %}
                 </a>

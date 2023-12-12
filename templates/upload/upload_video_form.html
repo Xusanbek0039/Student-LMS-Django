@@ -4,13 +4,13 @@
 
 {% block content %}
 
-<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Home</a>
-     <i>&rsaquo;</i> <a href="{% url 'programs' %}" class="primary1">Programs</a> <i>&rsaquo;</i> 
+<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Bosh saxifa</a>
+     <i>&rsaquo;</i> <a href="{% url 'programs' %}" class="primary1">Dasturlar</a> <i>&rsaquo;</i> 
      <a href="{% url 'program_detail' course.program.id %}" class="primary1"> {{ course.program }}</a> <i>&rsaquo;</i> 
      <a href="{% url 'course_detail' course.slug %}" class="primary1">{{ course }}</a>
-      <i>&rsaquo;</i> Video upload</div>
+      <i>&rsaquo;</i> Video yuklash</div>
 
-<p class="title-1">Video upload for {{ course }}</p>
+<p class="title-1">video yuklash uchun {{ course }}</p>
 <div class="title-line"></div><br>
 
 {% if messages %}
@@ -30,27 +30,27 @@
 <div class="row">
 <div class="col-md-8 p-0 mx-auto">
     <div class="card">
-    <p class="form-title">Video Upload Form</p><br>
+    <p class="form-title">Video yuklash shakli</p><br>
     <form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
         <div class="container">
             
             <div class="form-group">
-                <b>Video Name</b>{{ form.title }}
+                <b>Video nomi</b>{{ form.title }}
                 <span class="danger">{{ form.title.errors }}</span>
             </div>
             <div class="form-group">
                 <b>Video</b><br>{{ form.video }}
                 <span class="danger">{{ form.video.errors }}</span>
             </div>
-            <p class="text-orange"><b>Valid video formats: </b>'mp4', 'mkv', 'wmv', '3gp', 'f4v', 'avi', 'mp3'</p>
+            <p class="text-orange"><b>Videolar uchun berilgan format: </b>'mp4', 'mkv', 'wmv', '3gp', 'f4v', 'avi', 'mp3'</p>
             <div class="form-group">
                 <select hidden name="course" required="" id="id_course">
                     <option value="{{ course.pk }}" selected>{{ course }}</option>
                 </select>
             </div>
             <div class="form-group">
-                <button class="btn btn-primary" type="submit">Upload</button>
-                <a class="btn btn-danger" href="{% url 'course_detail' course.slug %}" style="float: right;">Cancel</a>
+                <button class="btn btn-primary" type="submit">Yuklash</button>
+                <a class="btn btn-danger" href="{% url 'course_detail' course.slug %}" style="float: right;">Bekor qilish</a>
             </div>
 
         </div>

@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
-{% block title %}{{ video.title }} | DjangoSMS{% endblock title %}
+{% block title %}{{ video.title }} | Student LMS{% endblock title %}
 {% load static %}
 
 {% block content %}
 
-<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Home</a>
-    <i>&rsaquo;</i> <a href="{% url 'programs' %}" class="primary1">Programs</a> <i>&rsaquo;</i> 
+<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Bosh saxifa</a>
+    <i>&rsaquo;</i> <a href="{% url 'programs' %}" class="primary1">Dasturlar</a> <i>&rsaquo;</i> 
     <a href="{% url 'program_detail' video.course.program.id %}" class="primary1"> {{ video.course.program }}</a> <i>&rsaquo;</i> 
     <a href="{% url 'course_detail' video.course.slug %}" class="primary1">{{ video.course }}</a>
      <i>&rsaquo;</i> {{ video.title }}</div>
@@ -13,7 +13,7 @@
 <p class="title-1">{{ video.title }}</p>
 <div class="title-line"></div><br>
 
-<p class="text-orange text-center">Video tutorial for course {{ video.course }}</p>
+<p class="text-orange text-center">Kurs uchun video darslik {{ video.course }}</p>
 
 <style>
     video{
@@ -24,7 +24,7 @@
 </style>
 
 <div class="col-md-10 mx-auto d-block">
-    <p><i class="fas fa-calendar"></i> {{ video.timestamp|timesince }} ago</p>
+    <p><i class="fas fa-calendar"></i> {{ video.timestamp|timesince }} oldin</p>
     <div class=""><video src="{{ video.video.url }}" controls ></video></div>
 </div>
 

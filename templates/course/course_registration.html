@@ -167,17 +167,17 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td><b>Second semester credit(s):</b> {{ total_sec_semester_credit }} </td>
+                                <td><b>Ikkinchi semester kreditlari:</b> {{ total_sec_semester_credit }} </td>
                                 <td></td>
                             </tr>
                             <tr>
                                 <th scope="row"></th>
-                                <td><b>Registerd course credit(s): <a id="units">{{ total_registered_credit }}</a></b>
+                                <td><b>Ro'yxatdan o'tgan kurs kreditlari: <a id="units">{{ total_registered_credit }}</a></b>
                                 </td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td><b>Total credit(s):</b> {{ total_sec_semester_credit|add:total_first_semester_credit
+                                <td><b>Umumiy kreditlar:</b> {{ total_sec_semester_credit|add:total_first_semester_credit
                                     }} </td>
                                 <td></td>
                             </tr>
@@ -196,12 +196,12 @@
 
 <a target="_blank" href="{% url 'course_registration_form' %}">
     <span title="Print Registration Form" class="btn btn-warning">
-        <i class="fa fa-file-pdf-o" aria-hidden="true"></i><i class="fas fa-print"></i> Print Registration Form
+        <i class="fa fa-file-pdf-o" aria-hidden="true"></i><i class="fas fa-print"></i> Ro'yxatdan o'tish shaklini chop etish
     </span>
 </a>
 
 <div class="col-md-12 p-0 bg-white">
-    <p class="form-title"><b>Course Drop</b>
+    <p class="form-title"><b>Kursni to'xtatish</b>
     <div class="level-wrapper">
         <div class="info-text">{{ student.level }}</div>
     </div>
@@ -211,7 +211,7 @@
             {% csrf_token %}
             <div class="d-flex justify-content-between mb-4">
                 <button title="Save Score" type="submit" class="btn btn-primary">
-                    <i class="fa fa-times"></i> Drop Selected
+                    <i class="fa fa-times"></i> Tanlangan
                 </button>
             </div>
 
@@ -226,13 +226,13 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Mark</th>
-                                <th>Course Code</th>
-                                <th>Course Title</th>
+                                <th>Ism</th>
+                                <th>Kurs kodi</th>
+                                <th>Kurs nomi</th>
                                 <th>Cr.Hr(s)</th>
-                                <th>Year</th>
-                                <th>Classification</th>
-                                <th>Elective Group</th>
+                                <th>Yil</th>
+                                <th>Tasniflash</th>
+                                <th>Tanganlar guruh</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -246,9 +246,9 @@
                                 <td>{{ course.credit }}</td>
                                 <td>{{ course.year }}</td>
                                 {% if course.is_elective %}
-                                <td>Elective</td>
+                                <td>Tanlangan </td>
                                 {% else %}
-                                <td>Core</td>
+                                <td>Yadro</td>
                                 {% endif %}
                                 <th>-</th>
                             </tr>
@@ -259,7 +259,7 @@
                                 <td></td>
                                 <td>
                                     <span class="text-danger">
-                                        <i class="far fa-frown"></i>No Course.
+                                        <i class="far fa-frown"></i>Kurs mavjud emas.
                                     </span>
                                 </td>
                                 <td></td>
@@ -273,7 +273,7 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td><b>Total credit(s):</b> {{ total_registered_credit }} </td>
+                                <td><b>Umumiy kreditlar:</b> {{ total_registered_credit }} </td>
                                 <td></td>
                             </tr>
                         </tbody>

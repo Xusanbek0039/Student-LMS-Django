@@ -5,9 +5,9 @@
 
 {% block content %}
 <div id="input-nav"><a href="{% url 'home' %}" class="primary1">Bosh saxifa</a> <i>&rsaquo;</i> 
-    <a href="{% url 'programs' %}" class="primary1">Dastur</a> <i>&rsaquo;</i> Add & Update Course</div>
+    <a href="{% url 'programs' %}" class="primary1">Kurs</a> <i>&rsaquo;</i> Kurs qoshish yoki qayta yuklash</div>
 
-<div class="title-1">Course Add & Update Form</div>
+<div class="title-1">Kurs qoshish yoki qayta yuklash shakli</div>
 <div class="title-line"></div>
 
 {% if messages %}
@@ -28,30 +28,30 @@
     <div class="row">
         <div class="col-md-6">
             <div class="card">
-                <p class="form-title">Course Info</p>
+                <p class="form-title">Kurs haqida</p>
                 <div class="p-3">
 
                     <div class="form-group">
                         <b>{{ form.title.label }}</b>{{ form.title }}
                         <span class="danger">{{ form.title.errors }}</span>
-                        <p class="text-muted-xs">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</p>
+                        <p class="text-muted-xs">Majburiy. 150 yoki undan kam belgi. Faqat harflar, raqamlar va @/./+/-/_.</p>
                     </div>
                     <div class="form-group">
                         <b>{{ form.code.label }}</b>{{ form.code }}
                         <span class="danger">{{ form.code.errors }}</span>
-                        <p class="text-muted-xs">The course code must be similar to only the pre requests.</p>
+                        <p class="text-muted-xs">Kurs kodi faqat oldingi so'rovlarga o'xshash bo'lishi kerak.</p>
                     </div>
                     <div class="form-group">
                         <b>{{ form.summary.label }}</b>(optional){{ form.summary }}
                         <span class="danger">{{ form.summary.errors }}</span>
-                        <p class="text-muted-xs">Enter some description about the course.</p>
+                        <p class="text-muted-xs">Kurs haqida ba'zi tavsiflarni kiriting.</p>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="card">
-                <p class="form-title">Applicant Info</p>
+                <p class="form-title">Ariza beruvchi haqida ma'lumot</p>
                 <div class="p-3">
                     
                     <div class="form-group">
@@ -82,7 +82,7 @@
             </div>
         </div>
     </div>
-    <center><input class="btn btn-outline-primary mt-3" type="submit" value="Save"></center>
+    <center><input class="btn btn-outline-primary mt-3" type="submit" value="Saqlash"></center>
 </form>
 
 {% endblock content %}
