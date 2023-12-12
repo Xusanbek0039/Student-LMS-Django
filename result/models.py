@@ -20,8 +20,8 @@ MASTER_DEGREE = "Master"
 
 LEVEL = (
     # (LEVEL_COURSE, "Level course"),
-    (BACHLOAR_DEGREE, "Bakalavr diplomi"),
-    (MASTER_DEGREE, "Magistr diplomi"),
+    (BACHLOAR_DEGREE, "Bachloar Degree"),
+    (MASTER_DEGREE, "Master Degree"),
 )
 
 FIRST = "First"
@@ -29,9 +29,9 @@ SECOND = "Second"
 THIRD = "Third"
 
 SEMESTER = (
-    (FIRST, "Birinchi"),
-    (SECOND, "Ikkinchi"),
-    (THIRD, "Uchinchi"),
+    (FIRST, "First"),
+    (SECOND, "Second"),
+    (THIRD, "Third"),
 )
 
 A_plus = "A+"
@@ -66,8 +66,8 @@ PASS = "PASS"
 FAIL = "FAIL"
 
 COMMENT = (
-    (PASS, "O'tdi"),
-    (FAIL, "O'tmadi"),
+    (PASS, "PASS"),
+    (FAIL, "FAIL"),
 )
 
 

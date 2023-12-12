@@ -31,9 +31,9 @@ def register(request):
         form = StudentAddForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, f'Hisob muvaffaqiyatli yaratildi.')
+            messages.success(request, f'Account created successfuly.')
         else:
-            messages.error(request, f'Nimadir noto‘g‘ri, Iltimos barcha maydonlarni to‘g‘ri to‘ldiring.')
+            messages.error(request, f'Somthing is not correct, please fill all fields correctly.')
     else:
         form = StudentAddForm(request.POST)
     return render(request, "registration/register.html", {'form': form})
@@ -41,7 +41,7 @@ def register(request):
 
 @login_required
 def profile(request):
-    """ So'rovni rad etgan har qanday foydalanuvchining profilini ko'rsatish """
+    """ Show profile of any user that fire out the request """
     try:
         current_session = get_object_or_404(Session, is_current_session=True)
         current_semester = get_object_or_404(Semester, is_current_semester=True, session=current_session)
@@ -87,7 +87,7 @@ def profile(request):
 @login_required
 @admin_required
 def profile_single(request, id):
-    """ Tanlangan foydalanuvchining profilini ko'rsatish """
+    """ Show profile of any selected user """
     if request.user.id == id:
         return redirect("/profile/")
 
@@ -99,7 +99,7 @@ def profile_single(request, id):
         context = {
             'title': user.get_full_name,
             "user": user,
-            "user_type": "O'qituvchi",
+            "user_type": "Lecturer",
             "courses": courses,
             'current_session': current_session,
             'current_semester': current_semester,
@@ -111,7 +111,7 @@ def profile_single(request, id):
         context = {
             'title': user.get_full_name,
             'user': user,
-            "user_type": "Talaba",
+            "user_type": "student",
             'courses': courses,
             'student': student,
             'current_session': current_session,
@@ -122,7 +122,7 @@ def profile_single(request, id):
         context = {
             'title': user.get_full_name,
             "user": user,
-            "user_type": "Boshliq",
+            "user_type": "superuser",
             'current_session': current_session,
             'current_semester': current_semester,
         }
@@ -133,21 +133,26 @@ def profile_single(request, id):
 @admin_required
 def admin_panel(request):
     return render(request, 'setting/admin_panel.html', {})
+# ########################################################
 
+
+# ########################################################
+# Setting views
+# ########################################################
 @login_required
 def profile_update(request):
     if request.method == 'POST':
         form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Profilingiz muvaffaqiyatli yangilandi.')
+            messages.success(request, 'Your profile has been updated successfully.')
             return redirect('profile')
         else:
-            messages.error(request, 'Quyidagi xatolarni tuzating.')
+            messages.error(request, 'Please correct the error(s) below.')
     else:
         form = ProfileUpdateForm(instance=request.user)
     return render(request, 'setting/profile_info_change.html', {
-        'title': 'Sozlamalar | Student LMS',
+        'title': 'Setting | DjangoSMS',
         'form': form,
     })
 
@@ -159,17 +164,17 @@ def change_password(request):
         if form.is_valid():
             user = form.save()
             update_session_auth_hash(request, user)
-            messages.success(request, 'Parolingiz muvaffaqiyatli yangilandi!')
+            messages.success(request, 'Your password was successfully updated!')
             return redirect('profile')
         else:
-            messages.error(request, 'Quyidagi xatolarni tuzating. ')
+            messages.error(request, 'Please correct the error(s) below. ')
     else:
         form = PasswordChangeForm(request.user)
     return render(request, 'setting/password_change.html', {
         'form': form,
     })
 # ########################################################
-# O'qituvchi uchun hisob
+
 @login_required
 @admin_required
 def staff_add_view(request):
@@ -179,13 +184,13 @@ def staff_add_view(request):
         last_name = request.POST.get('last_name')
         if form.is_valid():
             form.save()
-            messages.success(request, "O'qituvchi uchun hisob" + first_name + ' ' + last_name + " yaratilgan.")
+            messages.success(request, "Account for lecturer " + first_name + ' ' + last_name + " has been created.")
             return redirect("lecturer_list")
     else:
         form = StaffAddForm()
 
     context = {
-        'title': 'O\'qituvchi qo\'shish| Student LMS',
+        'title': 'Lecturer Add | DjangoSMS',
         'form': form,
     }
 
@@ -202,14 +207,14 @@ def edit_staff(request, pk):
         if form.is_valid():
             form.save()
 
-            messages.success(request, 'O''qituvchi ' + full_name + ' yangilandi.')
+            messages.success(request, 'Lecturer ' + full_name + ' has been updated.')
             return redirect('lecturer_list')
         else:
-            messages.error(request, 'Quyidagi xatoni tuzating.')
+            messages.error(request, 'Please correct the error below.')
     else:
         form = ProfileUpdateForm(instance=instance)
     return render(request, 'accounts/edit_lecturer.html', {
-        'title': 'O\'qituvchini taxrirlash | Student LMS',
+        'title': 'Edit Lecturer | DjangoSMS',
         'form': form,
     })
 
@@ -222,7 +227,7 @@ class LecturerListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = "O'qtivchi | Student LMS"
+        context['title'] = "Lecturers | DjangoSMS"
         return context
 
 
@@ -239,7 +244,7 @@ def delete_staff(request, pk):
     lecturer = get_object_or_404(User, pk=pk)
     full_name = lecturer.get_full_name
     lecturer.delete()
-    messages.success(request, 'O\'qituvchi ' + full_name + ' o\'chirildi.')
+    messages.success(request, 'Lecturer ' + full_name + ' has been deleted.')
     return redirect('lecturer_list')
 # ########################################################
 
@@ -256,15 +261,15 @@ def student_add_view(request):
         last_name = request.POST.get('last_name')
         if form.is_valid():
             form.save()
-            messages.success(request, 'Hisob: ' + first_name + ' ' + last_name + 'yaratilindi.')
+            messages.success(request, 'Account for ' + first_name + ' ' + last_name + ' has been created.')
             return redirect('student_list')
         else:
-            messages.error(request, 'Quyidagi xatolarni tuzating.')
+            messages.error(request, 'Correct the error(s) below.')
     else:
         form = StudentAddForm()
 
     return render(request, 'accounts/add_student.html', {
-        'title': "Talaba qo'shish | Student LMS",
+        'title': "Add Student | DjangoSMS",
         'form': form
     })
 
@@ -280,14 +285,14 @@ def edit_student(request, pk):
         if form.is_valid():
             form.save()
 
-            messages.success(request, ('Talaba ' + full_name + ' yangilani.'))
+            messages.success(request, ('Student ' + full_name + ' has been updated.'))
             return redirect('student_list')
         else:
-            messages.error(request, 'Quyidagi xatoni tuzating.')
+            messages.error(request, 'Please correct the error below.')
     else:
         form = ProfileUpdateForm(instance=instance)
     return render(request, 'accounts/edit_student.html', {
-        'title': 'Hisob taxrirlash | Student LMS',
+        'title': 'Edit-profile | DjangoSMS',
         'form': form,
     })
 
@@ -306,7 +311,7 @@ class StudentListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = "Talabalar | Student LMS"
+        context['title'] = "Students | DjangoSMS"
         return context
 
 
@@ -316,7 +321,7 @@ def delete_student(request, pk):
     student = get_object_or_404(Student, pk=pk)
     # full_name = student.user.get_full_name
     student.delete()
-    messages.success(request, 'Talaba o\'chirildi')
+    messages.success(request, 'Student has been deleted.')
     return redirect('student_list')
 # ########################################################
 

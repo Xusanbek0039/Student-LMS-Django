@@ -19,13 +19,13 @@ YEARS = (
     )
 
 # LEVEL_COURSE = "Level course"
-BACHLOAR_DEGREE = "Bakalavr"
-MASTER_DEGREE = "Magistr"
+BACHLOAR_DEGREE = "Bachloar"
+MASTER_DEGREE = "Master"
 
 LEVEL = (
     # (LEVEL_COURSE, "Level course"),
-    (BACHLOAR_DEGREE, "Balakavr diplomi"),
-    (MASTER_DEGREE, "Magistr diplomi"),
+    (BACHLOAR_DEGREE, "Bachloar Degree"),
+    (MASTER_DEGREE, "Master Degree"),
 )
 
 FIRST = "First"
@@ -33,9 +33,9 @@ SECOND = "Second"
 THIRD = "Third"
 
 SEMESTER = (
-    (FIRST, "Birinchi"),
-    (SECOND, "Ikkinchi"),
-    (THIRD, "Uchinchi"),
+    (FIRST, "First"),
+    (SECOND, "Second"),
+    (THIRD, "Third"),
 )
 
 
@@ -183,7 +183,7 @@ pre_save.connect(video_pre_save_receiver, sender=UploadVideo)
 
 
 class CourseOffer(models.Model):
-	"""Izoh: Semestr kurslarini faqat kafedra mudiri taklif qilishi mumkin"""
+	"""NOTE: Only department head can offer semester courses"""
 	dep_head = models.ForeignKey("accounts.DepartmentHead", on_delete=models.CASCADE)
 
 	def __str__(self):
