@@ -5,22 +5,22 @@
 
 
 {% block title %} {{ quiz.title}} {% endblock %}
-{% block description %} {% trans "Quiz Results for" %} {{ quiz.title }} {% endblock %}
+{% block description %} {% trans "Test natijalari" %} {{ quiz.title }} {% endblock %}
 
 {% block content %}
 
 <div id="input-nav">
-  <a href="{% url 'home' %}" class="primary1">Home</a> 
-  <a href="{% url 'programs' %}" class="primary1">Programs </a> 
+  <a href="{% url 'home' %}" class="primary1">Bosh saxifa</a> 
+  <a href="{% url 'programs' %}" class="primary1">Dasturlar </a> 
   <a href="{% url 'program_detail' course.program.id %}" class="primary1">{{ course.program }} </a> 
   <a href="{{ course.get_absolute_url }}" class="primary1">{{ course }} </a> 
-  <a href="{% url 'quiz_index' course.slug %}" class="primary1">Quizzes</a> 
-  <a href="{% url 'quiz_take' course.id quiz.slug %}" class="primary1">{{ quiz.title|title }}</a> Result
+  <a href="{% url 'quiz_index' course.slug %}" class="primary1">Testlar</a> 
+  <a href="{% url 'quiz_take' course.id quiz.slug %}" class="primary1">{{ quiz.title|title }}</a> Statistika
 </div>
 
 <div id="progress-card">
   <div class="col-md-6 mx-auto">
-    <h5 class="lead">Calculating your result...</h5>
+    <h5 class="lead">Natijangiz hisoblanmoqda...</h5>
     <div class="progress">
       <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
@@ -32,7 +32,7 @@
 <div class="container" id="progress-main">
   {% if previous.answers %}
     <div class="card bg-white p-3">
-        <p class="muted"><small>{% trans "The previous question" %}:</small></p>
+        <p class="muted"><small>{% trans "Oldingi savol" %}:</small></p>
         <p>{{ previous.previous_question }}</p>
         <p>Your answer was
         <strong>
@@ -45,7 +45,7 @@
 
           {% if user_was_incorrect %}
             <div class="alert alert-error">
-              <strong>{% trans "You answered the above question incorrectly" %}</strong>
+              <strong>{% trans "Siz yuqoridagi savolga noto'g'ri javob berdingiz" %}</strong>
             </div>
           {% endif %}
 
@@ -55,14 +55,14 @@
                 {% if answer.correct %}
                   <tr class="success">
                     <td>{{ answer }}</td>
-                  <td><strong>{% trans "This is the correct answer" %}</strong></td>
+                  <td><strong>{% trans "Bu to'g'ri javob" %}</strong></td>
                 {% else %}
                   <tr>
                     <td>{{ answer }}</td>
                     <td>
                     {% if previous.question_type.MCQuestion %}
                       {% if answer.id|add:"0" == previous.previous_answer|add:"0" %}
-                        {% trans "This was your answer." %}
+                        {% trans "Bu sizning javobingiz edi." %}
                       {% endif %}
                     {% endif %}
                     </td>
@@ -73,12 +73,12 @@
           </table>
         {% endif %}
 
-        <p><strong>{% trans "Explanation" %}:</strong></p>
+        <p><strong>{% trans "Tushuntirish" %}:</strong></p>
         <p class="p-2" style="background-color: #fcf8e3;">
           {% if previous.previous_question.explanation %}
             {{ previous.previous_question.explanation }}
           {% else %}
-            {% trans "No explanation set to this question." %}
+            {% trans "Bu savolga hech qanday tushuntirish berilmagan." %}
           {% endif %}
         </p>
         <hr>
@@ -89,14 +89,14 @@
   {% if max_score %}
 
   <div class="card bg-white p-3">
-    <div class="header-title-xl text-center">{% trans "Quiz result" %}</div>
+    <div class="header-title-xl text-center">{% trans "Viktorina natijasi" %}</div>
     <div class="title-line"></div>
 	<p class="text-center">
-	  <small class="muted">{% trans "Quiz title" %}: </small>
+	  <small class="muted">{% trans "Viktorina sarlavhasi" %}: </small>
 	  <strong>{{ quiz.title }}</strong></p>
 
 	<p class="lead text-center">
-	  {% trans "You answered" %} {{ score }} {% trans "questions correctly out of" %} {{ max_score }}, {% trans "giving you" %} {{ percent }}{% trans "% correct" %}
+	  {% trans "Siz javob berdingiz" %} {{ score }} {% trans "savollardan to'g'ri chiqib" %} {{ max_score }}, {% trans "sizga berish" %} {{ percent }}{% trans "% to'g'ri" %}
     </p>
 
     <div class="score-wrapper mx-auto">
@@ -109,13 +109,13 @@
   <div class="card p-1" style="border: 1px solid #fd7e14;">
     <p class="lead bg-light p-3 text-orange"><span class="fa-1x">&CircleDot;</span> {{ sitting.result_message }}</p>
     {% endif %}
-	    <p><span class="fa-2x text-orange">&LongRightArrow;</span> {% trans "Review the questions below and try the quiz again in the future"%}.</p>
+	    <p><span class="fa-2x text-orange">&LongRightArrow;</span> {% trans "Quyidagi savollarni ko'rib chiqing va kelgusida testni qaytadan sinab ko'ring"%}.</p>
       
       <p>
         <span class="fa-2x text-orange">&LongRightArrow;</span> 
-        {% trans "The result of this quiz will be stored in your progress section" %} 
+        {% trans "Ushbu test natijasi sizning taraqqiyot bo'limida saqlanadi" %} 
         <a class="text-primary" href="{% url 'quiz_progress' %}">Here</a> 
-        {% trans "so you can review and monitor your progression" %}.
+        {% trans "Shunday qilib, siz o'z taraqqiyotingizni ko'rib chiqishingiz va kuzatishingiz mumkin" %}.
       </p>
 
   </div>
@@ -127,7 +127,7 @@
   {% if possible %}
 
   <p class="lead">
-	{% trans "Your session score is" %} {{ session }} {% trans "out of a possible" %} {{ possible }}
+	{% trans "Sizning seans ballingiz" %} {{ session }} {% trans "mumkin emas" %} {{ possible }}
   </p>
 
   <hr>
@@ -136,28 +136,28 @@
 
   {% if questions %}
   <div class="card bg-light p-2">
-    <h2>Overview</h2>
+    <h2>Umumiy koʻrinish</h2>
     {% for question in questions %}
 
       <p class="lead">
 		    {{ forloop.counter }}, {{ question.content }}
 	    </p>
 
-	  <p><strong>{% trans "Explanation" %}:</strong></p>
+	  <p><strong>{% trans "Tushuntirish" %}:</strong></p>
     {% if question.explanation %}
     <p class="p-2 alert alert-info">
       {{ question.explanation|safe }}
     </p>
     {% else %}
     <p class="p-2 alert alert-warning">
-      {% trans "No explanation set for this question." %}
+      {% trans "Bu savol uchun hech qanday tushuntirish o'rnatilmagan." %}
     </p>
     {% endif %}
     
     {% correct_answer_for_all question %}
     
     {% if question.user_answer %}
-    <p>{% trans "Your answer" %}: {{ question|answer_choice_to_string:question.user_answer }}</p>
+    <p>{% trans "Javobingiz" %}: {{ question|answer_choice_to_string:question.user_answer }}</p>
     {% endif %}
 
     <hr>

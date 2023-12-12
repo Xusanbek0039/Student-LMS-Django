@@ -7,11 +7,11 @@
 
 {% block content %}
 
-<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Home</a> <i>&rsaquo;</i> 
-	<a href="{% url 'programs' %}" class="primary1">Programs </a> <i>&rsaquo;</i> 
+<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Bosh saxifa</a> <i>&rsaquo;</i> 
+	<a href="{% url 'programs' %}" class="primary1">Dasturlar </a> <i>&rsaquo;</i> 
 	<a href="{% url 'program_detail' course.program.id %}" class="primary1">{{ course.program }} </a> <i>&rsaquo;</i> 
 	<a href="{{ course.get_absolute_url }}" class="primary1">{{ course }} </a> <i>&rsaquo;</i> 
-	<a href="{% url 'quiz_index' course.slug %}" class="primary1">Quizzes</a> <i>&rsaquo;</i> {{ quiz.title|title }}</div>
+	<a href="{% url 'quiz_index' course.slug %}" class="primary1">Testlar</a> <i>&rsaquo;</i> {{ quiz.title|title }}</div>
 
 <div class="container">
 
@@ -20,7 +20,7 @@
 
 	{% if previous.answers %}
 
-	<p class="muted"><small>{% trans "The previous question" %}:</small></p>
+	<p class="muted"><small>{% trans "Oldingi savol" %}:</small></p>
 	<p>{{ previous.previous_question }}</p>
 
 	{% if previous.previous_outcome %}
@@ -29,7 +29,7 @@
 		<div class="alert alert-warning">
 	{% endif %}
 		<p><small>
-			{% trans "Your answer was" %} </small>
+			{% trans "Sizning javobingiz edi" %} </small>
 			<strong>
 			{{ previous.previous_outcome|yesno:"correct,incorrect" }}
 			</strong>
@@ -42,7 +42,7 @@
 
           {% if user_was_incorrect %}
             <div class="alert alert-error">
-              <strong>{% trans "You answered the above question incorrectly" %}</strong>
+              <strong>{% trans "Siz yuqoridagi savolga noto'g'ri javob berdingiz" %}</strong>
             </div>
           {% endif %}
 
@@ -52,14 +52,14 @@
                 {% if answer.correct %}
                   <tr class="success">
                     <td>{{ answer }}</td>
-                  <td><strong>{% trans "This is the correct answer" %}</strong></td>
+                  <td><strong>{% trans "Bu to'g'ri javob" %}</strong></td>
                 {% else %}
                   <tr>
                     <td>{{ answer }}</td>
                     <td>
                     {% if previous.question_type.MCQuestion %}
                       {% if answer.id|add:"0" == previous.previous_answer|add:"0" %}
-                        {% trans "This was your answer." %}
+                        {% trans "Bu sizning javobingiz edi." %}
                       {% endif %}
                     {% endif %}
                     </td>
@@ -71,19 +71,15 @@
         {% endif %}
 		
 
-        <p><strong>{% trans "Explanation" %}:</strong></p>
+        <p><strong>{% trans "Tushuntirish" %}:</strong></p>
         <p class="p-2" style="background-color: #fcf8e3;">
           {% if previous.previous_question.explanation %}
             {{ previous.previous_question.explanation }}
           {% else %}
-            {% trans "No explanation set to this question." %}
+            {% trans "Bu savolga hech qanday tushuntirish berilmagan." %}
           {% endif %}
 		</p>
 		
-		<!-- <p><strong>{% trans "Explanation" %}:</strong></p>
-		<div class="well " style="background-color: #fcf8e3;">
-		<p>{{ previous.previous_question.explanation }}</p>
-		</div> -->
 
 		<hr>
 
@@ -98,26 +94,26 @@
     <div id="popup-box-messages">
         <div class="box-messages">
             <a id="popup-btn-messages" class="btn btn-light"><i class="fas fa-times"></i></a>
-			<div class="lead">Quiz instractions</div>
+			<div class="lead">Viktorina bo'yicha ko'rsatmalar</div>
 			<div class="alert alert-warning">
 				<p>
-					You can't go back to the previous question after you submit it, 
-					so double check your answer before proceeding to the next one!
+					Siz yuborganingizdan keyin oldingi savolga qaytolmaysiz,
+					shuning uchun keyingisiga o'tishdan oldin javobingizni ikki marta tekshiring!
 				</p>
 			</div>
-			<button id="popup-btn-messages" type="button" class="btn btn-primary" data-dismiss="modal">Understood</button>
+			<button id="popup-btn-messages" type="button" class="btn btn-primary" data-dismiss="modal">Tushundim</button>
         </div>
 	</div>
 	{% endif %}
 
 	{% if progress %}
 	<div class="info-text bg-danger" style="float: right;">
-	{% trans "Question" %} {{ progress.0|add:1 }} {% trans "of" %} {{ progress.1 }}
+	{% trans "Test" %} {{ progress.0|add:1 }} {% trans "of" %} {{ progress.1 }}
 	</div>
 	{% endif %}
 
 	<p>
-		<small class="muted">{% trans "Quiz category" %}:</small>
+		<small class="muted">{% trans "Test turkumlari" %}:</small>
 		<strong>{{ quiz.category }}</strong>
 	</p>
 
@@ -142,8 +138,8 @@
 					{% endfor %}
 
 				</ul>
-				<input type="submit" value={% trans "Check" %} class="btn btn-large btn-block btn-primary" >
-				<!-- <input type="submit" value={% trans "Previous" %} class="btn btn-large btn-block btn-outline-primary" > -->
+				<input type="submit" value={% trans "Tekshirish" %} class="btn btn-large btn-block btn-primary" >
+				<!-- <input type="submit" value={% trans "Oldingi" %} class="btn btn-large btn-block btn-outline-primary" > -->
 			</form>
 		</div>
 
