@@ -2,13 +2,13 @@
 {% block title %}{{ title }}{% endblock title %}
 
 {% block content %}
-<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Home</a> <i>&rsaquo;</i> Programs</div>
+<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Bosh saxifa</a> <i>&rsaquo;</i> Dastur</div>
 
 {% if request.user.is_superuser %}
-<a class="add-button" href="{% url 'add_program' %}"><i class="fas fa-plus"></i>Add Program</a>
+<a class="add-button" href="{% url 'add_program' %}"><i class="fas fa-plus"></i>Dastur qo'shish</a>
 {% endif %}
 
-<div class="title-1"><i class="fas fa-book-open"></i>Program List</div>
+<div class="title-1"><i class="fas fa-book-open"></i>Dasturlar ro'yxati</div>
 <div class="title-line"></div>
 
 {% if messages %}
@@ -27,10 +27,10 @@
 
 <div class="content-center">
     <form class="search-form mx-auto" action="" method="GET">{% csrf_token %}
-        <input class="au-input" type="text" name="program_filter" placeholder="Program name"
+        <input class="au-input" type="text" name="program_filter" placeholder="Dastur nomi"
             value="{{ request.GET.program_filter }}" />
         <button class="btn btn-light" type="submit">
-            <i class="fas fa-search"></i> Filter
+            <i class="fas fa-search"></i> Filtrlash
         </button>
     </form>
 </div>
@@ -45,11 +45,11 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <p class="p-4">
-                Are you sure you want to delete this item?
+                Haqiqatan ham bu elementni oʻchirib tashlamoqchimisiz?
             </p>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <a class="btn btn-danger" href="{% url 'program_delete' pk=program.pk %}">Delete</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Bekor qilish</button>
+                <a class="btn btn-danger" href="{% url 'program_delete' pk=program.pk %}">O'chirish</a>
             </div>
         </div>
     </div>
@@ -62,11 +62,11 @@
         <table class="table table-light">
             <thead>
                 <tr>
-                    <th>#</th>
-                    <th>Program Name</th>
-                    <th>Summary</th>
+                    <th>№</th>
+                    <th>Dastur nomi</th>
+                    <th>Xulosa</th>
                     {% if request.user.is_superuser %}
-                    <th>Action</th>
+                    <th>Urinishlar</th>
                     {% endif %}
                 </tr>
             </thead>
@@ -94,13 +94,13 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <p class="p-4">
-                                        Are you sure you want to delete this program?
+                                        Haqiqatan ham bu dasturni oʻchirib tashlamoqchimisiz?
                                     </p>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
-                                            data-dismiss="modal">Close</button>
+                                            data-dismiss="modal">Bekor qilish</button>
                                         <a class="btn btn-danger"
-                                            href="{% url 'program_delete' pk=program.pk %}">Delete</a>
+                                            href="{% url 'program_delete' pk=program.pk %}">O'chirish</a>
                                     </div>
                                 </div>
                             </div>

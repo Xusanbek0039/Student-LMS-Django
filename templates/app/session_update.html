@@ -4,8 +4,8 @@
 {% load static %}
 
 {% block content %}
-<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Home</a> <i>&rsaquo;</i> 
-    <a href="{% url 'session_list' %}" class="primary1">Session List</a> <i>&rsaquo;</i> Session Add & update</div>
+<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Bosh saxifa</a> <i>&rsaquo;</i> 
+    <a href="{% url 'session_list' %}" class="primary1">Session ro'yxati</a> <i>&rsaquo;</i> Session joylash & Taxrirlash</div>
 <br>
 
 {% if messages %}
@@ -25,11 +25,11 @@
 <div class="row">
     <div class="col-md-6 mx-auto">
         <div class="card pb-3">
-            <p class="form-title">Session Add & update Form</p>
+            <p class="form-title">Session joylash & Taxrirlash bo'limi</p>
             <div class="container"><br>
                 <form action="" method="POST">{% csrf_token %}
                     {{ form|crispy }}
-                    <input class="btn btn-primary" type="submit" value="Save">
+                    <input class="btn btn-primary" type="submit" value="Saxlash">
                 </form>
             </div>
         </div>

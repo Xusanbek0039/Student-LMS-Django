@@ -3,13 +3,13 @@
 
 {% block content %}
 
-<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Home</a> <i>&rsaquo;</i> Semester list</div>
+<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Bosh saxifa</a> <i>&rsaquo;</i> Semestr ro'yxati</div>
 
 {% if request.user.is_superuser %}
-<a class="add-button" href="{% url 'add_semester' %}"><i class="fas fa-plus"></i>Add New Semester</a>
+<a class="add-button" href="{% url 'add_semester' %}"><i class="fas fa-plus"></i>Yangi semester joylash</a>
 {% endif %}
 
-<div class="title-1"><i class="fas fa-calendar-alt"></i>Semester List</div>
+<div class="title-1"><i class="fas fa-calendar-alt"></i>Semester ro'yxati</div>
 <div class="title-line"></div>
 
 {% if messages %}
@@ -30,13 +30,13 @@
     <table class="table">
         <thead>
             <tr>
-                <th>#</th>
+                <th>№</th>
                 <th> Semester </th>
-                <th> Is Current semester </th>
-                <th> Session </th>
-                <th> Next Semester Begins </th>
+                <th> Joriy semestr </th>
+                <th> Oraliq </th>
+                <th> Keyingi semestr </th>
                 {% if request.user.is_superuser %}
-                <th> Actions </th>
+                <th> Urinishlar </th>
                 {% endif %}
             </tr>
         </thead>
@@ -59,9 +59,9 @@
                 {% if request.user.is_superuser %}
                 <td>
                     <div class="update-delete">
-                        <a href="{% url 'edit_semester' pk=semester.pk %}" class="update" title="Edit"><i
+                        <a href="{% url 'edit_semester' pk=semester.pk %}" class="update" title="Taxrirlash"><i
                                 class="fas fa-pencil-alt"></i></a>
-                        <a href="{% url 'delete_semester' pk=semester.pk %}" class="delete" title="Delete"><i
+                        <a href="{% url 'delete_semester' pk=semester.pk %}" class="delete" title="O'chirish"><i
                                 class="fas fa-trash-alt"></i></a>
                     </div>
                 </td>
@@ -73,11 +73,11 @@
                 <td></td>
                 <td>
                     <span class="text-danger">
-                        <i class="far fa-frown"></i>No Semester.
+                        <i class="far fa-frown"></i>Afsuski hozircha xech qanday semester mavjud emas.
                         {% if request.user.is_superuser %}
                         <a href="{% url 'add_semester' %}">
                             <i class="primary" style="font-size: 22px;">
-                                Add Semester Now.
+                                Semester joylash.
                             </i>
                             {% endif %}
                         </a>

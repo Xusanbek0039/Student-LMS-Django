@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
-{% block title %}{{ title }} | DjangoSMS{% endblock title %}
+{% block title %}{{ title }} | Student LMS{% endblock title %}
 {% load static %}
 
 {% block content %}
 
 <div class="container">
 
-    <div id="input-nav"><a href="{% url 'home' %}" class="primary1">Home </a>
-        <a href="{% url 'programs' %}" class="primary1">Programs </a>
+    <div id="input-nav"><a href="{% url 'home' %}" class="primary1">Bosh saxifa </a>
+        <a href="{% url 'programs' %}" class="primary1">Dasturlar </a>
         <a href="{% url 'program_detail' course.program.id %}" class="primary1"> {{ course.program }}</a>
         {{ course }}
     </div>
@@ -17,16 +17,16 @@
             <div class="col ml-auto">
                 {% if request.user.is_superuser or request.user.is_lecturer %}
                 <a class="add-button" href="{% url 'upload_file_view' course.slug %}"><i class="fas fa-plus"></i>
-                    Upload new file
+                    Yangi faylni yuklash
                 </a>
                 <a class="add-button" href="{% url 'upload_video' course.slug %}"><i class="fas fa-plus"></i>
-                    Upload new video
+                    Yangi video yuklash
                 </a>
                 {% endif %}
             </div>
             <div class="col text-right">
                 <a class="btn btn-lg btn-warning" href="{% url 'quiz_index' course.slug %}"><i class="fas fa-list"></i>
-                    Take a Quiz
+                    Viktorina qiling
                 </a>
             </div>
         </div>
@@ -38,7 +38,7 @@
     {% if request.user.is_superuser %}
     <div class="btn-flex">
         <a class="edit-btn" href="{% url 'edit_course' course.slug %}">
-            <i class="fas fa-pencil-alt"></i><span class="mobile-hide">Edit This course</span>
+            <i class="fas fa-pencil-alt"></i><span class="mobile-hide">Bu kursni taxrirlash</span>
         </a>
     </div>
     {% endif %}
@@ -59,17 +59,17 @@
 
     <div class="row mb-5">
         <div class="col-md-12 p-0">
-            <p class="form-title m-0">Video Tutorials</p>
+            <p class="form-title m-0">Video darsliklar</p>
             <div class="table-responsive">
                 <table class="table table-shadow table-light table-striped m-0">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>Video Title</th>
-                            <th>Uploaded Date</th>
-                            <th>Get Started</th>
+                            <th>№</th>
+                            <th>Video nomi</th>
+                            <th>Yuklangan vaqt</th>
+                            <th>Boshlash </th>
                             {% if request.user.is_superuser or request.user.is_lecturer %}
-                            <th>Actions</th>
+                            <th>Urinishlar</th>
                             {% endif %}
                         </tr>
                     </thead>
@@ -87,7 +87,7 @@
                                 <div>
                                     <a class="download-btn" href="{{ video.get_absolute_url }}"
                                         title="Download to your device">
-                                        <i class="fas fa-download"></i>Get Started</a>
+                                        <i class="fas fa-download"></i>Boshlash</a>
                                 </div>
                             </th>
 
@@ -112,11 +112,11 @@
                             <td></td>
                             <td>
                                 <span class="text-danger">
-                                    <i class="far fa-frown fa-1x"></i> No video Uploaded.
+                                    <i class="far fa-frown fa-1x"></i> Video yuklanmagan
                                     {% if request.user.is_superuser or request.user.is_lecturer %}
                                     <a href="{% url 'upload_video' course.slug %}">
                                         <i class="primary" style="font-size: 22px;">
-                                            Upload now.
+                                            Hozir yuklash.
                                         </i>
                                         {% endif %}
                                     </a>
@@ -135,18 +135,18 @@
 
     <div class="row">
         <div class="col-md-12 p-0">
-            <p class="form-title m-0">Documentations</p>
+            <p class="form-title m-0">Hujjatlar</p>
             <div class="table-responsive">
                 <table class="table table-shadow table-light table-striped m-0">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>File name</th>
-                            <th>Uploaded Date</th>
-                            <th>Updated Date</th>
-                            <th>Downloads</th>
+                            <th>№</th>
+                            <th>File nomi</th>
+                            <th>Yuklangan vaqt</th>
+                            <th>Yuklangan sana </th>
+                            <th>Yuklamalar</th>
                             {% if request.user.is_superuser or request.user.is_lecturer %}
-                            <th>Actions</th>
+                            <th>Urinishlar</th>
                             {% endif %}
                         </tr>
                     </thead>
@@ -165,7 +165,7 @@
                             <th>
                                 <div>
                                     <a class="download-btn" href="{{ file.file.url }}" title="Download to your device">
-                                        <i class="fas fa-download"></i>Download</a>
+                                        <i class="fas fa-download"></i>Yuklash</a>
                                 </div>
                             </th>
 
@@ -190,11 +190,11 @@
                             <td></td>
                             <td>
                                 <span class="text-danger">
-                                    <i class="far fa-frown fa-1x"></i> No File Uploaded.
+                                    <i class="far fa-frown fa-1x"></i> File yuklanmagan.
                                     {% if request.user.is_superuser or request.user.is_lecturer %}
                                     <a href="{% url 'upload_file_view' course.slug %}">
                                         <i class="primary" style="font-size: 22px;">
-                                            Upload now.
+                                            Hozir yuklash.
                                         </i>
                                         {% endif %}
                                     </a>
@@ -214,7 +214,7 @@
 </div>
 
 <div class="site-section">
-    <div class="title-1">Instructor(s)</div>
+    <div class="title-1">Instructorlar</div>
     <br>
     <div class="container marketing">
         <div class="row">
@@ -225,8 +225,8 @@
                 {% endif %}
                 <h2>{{ lecturer|title }}</h2>
                 <p style="color: #6c757d;">{{ lecturer.lecturer.email }}</p>
-                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies
-                    vehicula ut id elit.</p>
+                <p>Afsuski, men sizni yomon ko'raman. Hatto tarmoqqa kirish eshigi ham katta va yumshoq bo'lishi kutilmoqda. Og'riq degan narsa yo'q
+                    shunga o'xshash transport vositalari.</p>
                 <p>
                     <a class="btn rounded-circle btn-secondary" href="#" role="button"><i
                             class="fab fa-twitter"></i></a>

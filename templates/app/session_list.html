@@ -3,13 +3,13 @@
 
 {% block content %}
 
-<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Home</a> <i>&rsaquo;</i> Session list</div>
+<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Bosh saxifa</a> <i>&rsaquo;</i> Oraliqlar ro'yxati</div>
 
 {% if request.user.is_superuser %}
-<a class="add-button" href="{% url 'add_session' %}"><i class="fas fa-plus"></i>Add New Session</a>
+<a class="add-button" href="{% url 'add_session' %}"><i class="fas fa-plus"></i>Yangi oraliq joylash</a>
 {% endif %}
 
-<div class="title-1"><i class="fas fa-calendar-week"></i>Session List</div>
+<div class="title-1"><i class="fas fa-calendar-week"></i>Oraliqlar ro'yxati</div>
 <div class="title-line"></div>
 
 {% if messages %}
@@ -30,12 +30,12 @@
     <table class="table">
         <thead>
             <tr>
-                <th>#</th>
-                <th> Session </th>
-                <th> Is Current Session </th>
-                <th> Next Session Begins </th>
+                <th>№</th>
+                <th> Oraliq </th>
+                <th> Joriy sessiya </th>
+                <th> Keyingi sessiya boshlanishi </th>
                 {% if request.user.is_superuser %}
-                <th> Actions </th>
+                <th> Urinishlar </th>
                 {% endif %}
             </tr>
         </thead>
@@ -55,8 +55,8 @@
 
                 {% if request.user.is_superuser %}
                 <td> <div class="update-delete">
-                    <a href="{% url 'edit_session' pk=session.pk %}" class="update" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                    <a href="{% url 'delete_session' pk=session.pk %}" class="delete" title="Delete"><i class="fas fa-trash-alt"></i></a>
+                    <a href="{% url 'edit_session' pk=session.pk %}" class="update" title="Taxrirlash"><i class="fas fa-pencil-alt"></i></a>
+                    <a href="{% url 'delete_session' pk=session.pk %}" class="delete" title="O'chirish"><i class="fas fa-trash-alt"></i></a>
                     </div>
                 </td>
                 {% endif %}
@@ -67,11 +67,11 @@
                   <td></td>
                   <td>
                   <span class="text-danger">
-                    <i class="far fa-frown"></i>No Session.
+                    <i class="far fa-frown"></i>Afsuski hozircha xech qanday sessiya mavjud emas.
                     {% if request.user.is_superuser %}
                     <a href="{% url 'add_session' %}">
                     <i class="primary" style="font-size: 22px;">
-                       Add Session Now.
+                       Yangi oraliq joylash.
                     </i>
                     {% endif %}
                     </a>

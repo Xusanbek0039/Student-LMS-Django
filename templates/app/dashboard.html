@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %} Admin Panel {% endblock title %}
+{% block title %} Sayt statistikasi {% endblock title %}
 {% load static %}
 
 {% block header %}
@@ -7,7 +7,7 @@
 
 {% block content %}
 
-<div id="input-nav" class="p-2"><a href="/"> Bosh saxifa </a> Admin panel</div>
+<div id="input-nav" class="p-2"><a href="/"> Bosh saxifa </a> Sayt statistikasi</div>
 
 {% if messages %}
 {% for message in messages %}
@@ -151,19 +151,19 @@
 </style>
 
 <div class="page-header">
-	<h1 class="title-1 mb-5">Dashboard</h1>
+	<h1 class="title-1 mb-5">Sayt statistikasi</h1>
 	<div class="btn-group">
 		<button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
 			aria-expanded="false">
 			<i class="fas fa-cog"></i>
 		</button>
 		<div class="dropdown-menu dropdown-menu-right">
-			<h6 class="dropdown-header">Dashboard settings</h6>
-			<button class="dropdown-item" type="button">Display row</button>
-			<button class="dropdown-item" type="button">Display column</button>
-			<button class="dropdown-item" type="button">Display table</button>
+			<h6 class="dropdown-header">Admin sozlamalari</h6>
+			<button class="dropdown-item" type="button">Qatorni ko'rsatish</button>
+			<button class="dropdown-item" type="button">Ustunni ko'rsatish</button>
+			<button class="dropdown-item" type="button">Jadvalni ko'rsatish</button>
 			<hr>
-			<button class="dropdown-item" type="button">Manage dashboard</button>
+			<button class="dropdown-item" type="button">Panelni boshqarish</button>
 		</div>
 	</div>
 </div>
@@ -173,7 +173,7 @@
 		<div class="card-count p-3">
 			<h3><i class="fas fa-users bg-light-aqua"></i></h3>
 			<div class="text-right">
-				Students
+				Talabalar
 				<h2>12</h2>
 			</div>
 		</div>
@@ -182,8 +182,8 @@
 		<div class="card-count p-3">
 			<h3><i class="fas fa-users bg-light-orange"></i></h3>
 			<div class="text-right">
-				Lecturers
-				<h2>1,350</h2>
+				Ma'ruzachilar
+				<h2>10</h2>
 			</div>
 		</div>
 	</div>
@@ -191,7 +191,7 @@
 		<div class="card-count p-3">
 			<h3><i class="fas fa-users bg-light-purple"></i></h3>
 			<div class="text-right">
-				Lab Assistance
+				Laboratoriya yordami
 				<h2>500</h2>
 			</div>
 		</div>
@@ -200,7 +200,7 @@
 		<div class="card-count p-3">
 			<h3><i class="fas fa-users bg-light-red"></i></h3>
 			<div class="text-right">
-				Administrators
+				Administratorlar
 				<h2>125</h2>
 			</div>
 		</div>
@@ -209,7 +209,7 @@
 		<div class="card-count p-3">
 			<h3><i class="fas fa-users bg-light-red"></i></h3>
 			<div class="text-right">
-				Librarian
+				Kutubxonachi
 				<h2>300</h2>
 			</div>
 		</div>
@@ -218,7 +218,7 @@
 		<div class="card-count p-3">
 			<h3><i class="fas fa-users bg-light-purple"></i></h3>
 			<div class="text-right">
-				Supervisors
+				Nazoratchilar
 				<h2>660</h2>
 			</div>
 		</div>
@@ -227,7 +227,7 @@
 		<div class="card-count p-3">
 			<h3><i class="fas fa-users bg-light-orange"></i></h3>
 			<div class="text-right pl-2">
-				Office Assistance
+				Ofis yordami
 				<h2>1,700</h2>
 			</div>
 		</div>
@@ -236,7 +236,7 @@
 		<div class="card-count p-3">
 			<h3><i class="fas fa-users bg-light-aqua"></i></h3>
 			<div class="text-right">
-				Others
+				Boshqalar
 				<h2>1,250</h2>
 			</div>
 		</div>
@@ -260,31 +260,31 @@
 		<div class="row">
 			<div class="col-md-6 p-2">
 				<div class="card p-3 activities">
-					<h5>Your recent activities</h5>
+					<h5>Sizning oxirgi harakatlaringiz</h5>
 					<ul class="small">
-						<li>Created a survey of something</li>
-						<li>Added new admin user</li>
-						<li><span class="text-danger">Deleted</span> 1 video from CSE course</li>
-						<li>New documentation <span class="text-success">attached</span> for Arch</li>
-						<li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
-						<li>Veniam magnam reiciendis modi explicabo sed aliquid natus</li>
-						<li>molestias corrupti suscipit similique ex adipisci praesentium</li>
-						<li>sint dolore, quo quibusdam ea, neque cupiditate.</li>
+						<li>Biror narsa bo'yicha so'rovnoma yaratildi</li>
+						<li>Yangi administrator qo‘shildi</li>
+						<li><span class="text-danger">CSE kursidan 1 video </span>o'chirildi </li>
+						<li>Yangi hujjatlar <span class="text-success">muvafaqiyatli</span> yuklandi</li>
+						<li>Kompaniyaning o'zi juda muvaffaqiyatli kompaniya.</li>
+						<li>---</li>
+						<li>---</li>
+						<li>---</li>
 					</ul>
 				</div>
 			</div>
 			<div class="col-md-6 p-2">
 				<div class="card p-3 activities">
-					<h5>Overall activities</h5>
+					<h5>Umumiy faoliyat</h5>
 					<ul class="small">
-						<li>Created a survey of something</li>
-						<li>Added new admin user</li>
-						<li><span class="text-danger">Deleted</span> 1 video from CSE course</li>
-						<li>New documentation <span class="text-success">attached</span> for Arch</li>
-						<li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
-						<li>Veniam magnam reiciendis modi explicabo sed aliquid natus</li>
-						<li>molestias corrupti suscipit similique ex adipisci praesentium</li>
-						<li>sint dolore, quo quibusdam ea, neque cupiditate.</li>
+						<li>Biror narsa bo'yicha so'rovnoma yaratildi</li>
+						<li>Yangi administrator qo‘shildi</li>
+						<li><span class="text-danger">CSE kursni boyicha </span> 1 video qo'shildi</li>
+						<li><span class="text-success"></span> </li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
 					</ul>
 				</div>
 			</div>
@@ -305,7 +305,7 @@
 </div>
 <br>
 <div class="bg-white p-3">
-	<h5>School Demographics</h5>
+	<h5>Maktab demografiyasi</h5>
 	<div class="row">
 		<div class="col-md-4">
 			<i class="fas fa-expand-alt"></i>
@@ -333,35 +333,35 @@
 
 		// Setup
 		const labels = [
-			'January',
-			'February',
-			'March',
-			'April',
+			'Yanivar',
+			'Fevral',
+			'Mart',
+			'Aprel',
 			'May',
-			'June',
+			'Iyun',
 		];
 		const data = {
 			labels: labels,
 			datasets: [{
-				label: 'Students',
+				label: 'Talabalar',
 				backgroundColor: 'rgba(86, 224, 224, 0.5)',
 				borderColor: 'rgb(86, 224, 224)',
 				hoverBorderWidth: 3,
 				data: [0, 10, 5, 2, 20, 30, 45]
 			}, {
-				label: 'Teachers',
+				label: 'Ustozlar',
 				backgroundColor: 'rgba(253, 174, 28, 0.5)',
 				borderColor: 'rgb(253, 174, 28)',
 				hoverBorderWidth: 3,
 				data: [20, 0, 15, 4, 6, 4, 60],
 			}, {
-				label: 'Admins',
+				label: 'Adminlar',
 				backgroundColor: 'rgba(203, 31, 255, 0.5)',
 				borderColor: 'rgb(203, 31, 255)',
 				hoverBorderWidth: 3,
 				data: [85, 30, 34, 20, 20, 55, 45],
 			}, {
-				label: 'Stuffs',
+				label: 'Narsalar',
 				backgroundColor: 'rgba(255, 19, 157, 0.5)',
 				borderColor: 'rgb(255, 19, 157)',
 				hoverBorderWidth: 3,
@@ -377,7 +377,7 @@
 				plugins: {
 					title: {
 						display: true,
-						text: 'Website Traffic',
+						text: 'Saytdan foydalanish statistikasi',
 						padding: 15
 					}
 				}
@@ -396,31 +396,37 @@
 		const dataEnrollment = {
 			labels: labelsEnrollment,
 			datasets: [{
-				label: 'Comp.S',
+				label: 'PHP',
 				backgroundColor: 'rgba(86, 224, 224, 0.5)',
 				borderColor: 'rgb(86, 224, 224)',
 				hoverBorderWidth: 3,
 				data: [0, 10, 5, 2, 20, 30, 45]
 			}, {
-				label: 'Architecture',
+				label: 'CSS',
 				backgroundColor: 'rgba(253, 174, 28, 0.5)',
 				borderColor: 'rgb(253, 174, 28)',
 				hoverBorderWidth: 3,
 				data: [20, 0, 15, 4, 6, 4, 60],
 			}, {
-				label: 'Civil Eng',
+				label: 'C++',
 				backgroundColor: 'rgba(203, 31, 255, 0.5)',
 				borderColor: 'rgb(203, 31, 255)',
 				hoverBorderWidth: 3,
 				data: [85, 30, 34, 20, 20, 55, 45],
-			}, {
-				label: 'Accounting',
+			},{
+				label: 'Python',
+				backgroundColor: 'rgba(255, 19, 157)',
+				borderColor: 'rgb(255, 19, )',
+				hoverBorderWidth: 3,
+				data: [45, 75, 70, 80, 20, 30, 90],
+			} ,{
+				label: 'HTML',
 				backgroundColor: 'rgba(255, 19, 157, 0.5)',
 				borderColor: 'rgb(255, 19, 157)',
 				hoverBorderWidth: 3,
 				data: [45, 75, 70, 80, 20, 30, 90],
 			}, {
-				label: 'Business Man',
+				label: 'Java Script',
 				backgroundColor: 'rgba(0, 0, 0, 0.5)',
 				borderColor: 'rgb(0, 0, 0)',
 				hoverBorderWidth: 3,
@@ -436,7 +442,7 @@
 				plugins: {
 					title: {
 						display: true,
-						text: 'Enrollment per course',
+						text: 'Har bir kurs uchun ro\'yxatdan o\'tish statistikasi',
 						padding: 20
 					}
 				}
@@ -451,7 +457,7 @@
 				plugins: {
 					title: {
 						display: true,
-						text: 'Overall Attendance',
+						text: 'Umumiy ishtirok',
 						padding: 20
 					}
 				}
@@ -503,7 +509,7 @@
 				plugins: {
 					title: {
 						display: true,
-						text: 'Students average grade (performance)',
+						text: 'Talabalarning o\'rtacha bahosi (ishlash)',
 						padding: 20
 					}
 				}
@@ -527,15 +533,15 @@
 		// });
 
 		const dataGender = {
-			labels: ['Man', 'Women'],
+			labels: ['O`g`il', 'Qiz'],
 			datasets: [{
-				label: 'Man',
+				label: 'O`g`il',
 				backgroundColor: 'rgba(86, 224, 224, 0.5)',
 				borderColor: 'rgb(86, 224, 224)',
 				hoverBorderWidth: 3,
 				data: [56]
 			}, {
-				label: 'Women',
+				label: 'Qiz',
 				backgroundColor: 'rgba(253, 174, 28, 0.5)',
 				borderColor: 'rgb(253, 174, 28)',
 				hoverBorderWidth: 3,
@@ -551,7 +557,7 @@
 				plugins: {
 					title: {
 						display: true,
-						text: 'Students Gender',
+						text: 'Talabalar jinsi',
 						padding: 20
 					}
 				}
@@ -565,7 +571,7 @@
 				plugins: {
 					title: {
 						display: true,
-						text: 'Race/Ethinicity',
+						text: 'Irq/Etnik',
 						padding: 20
 					}
 				}
@@ -579,7 +585,7 @@
 				plugins: {
 					title: {
 						display: true,
-						text: 'Home Language',
+						text: 'Til bo\'yicha',
 						padding: 20
 					}
 				}

@@ -95,12 +95,12 @@
       </li>
       <li class="{% if request.path == sess %}active{% endif %}">
         <a href="{% url 'session_list' %}"
-          ><i class="fas fa-calendar-week"></i>Sessiyani boshqarish</a
+          ><i class="fas fa-calendar-week"></i>Oraliqlarni boshqarish</a
         >
       </li>
       <li class="{% if request.path == sem %}active{% endif %}">
         <a href="{% url 'semester_list' %}"
-          ><i class="fas fa-calendar-alt"></i>Oraliqlarni boshqarish</a
+          ><i class="fas fa-calendar-alt"></i> Sessiyani boshqarish</a
         >
       </li>
       {% endif %} {% if request.user.is_lecturer %}

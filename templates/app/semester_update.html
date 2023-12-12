@@ -4,8 +4,8 @@
 {% load static %}
 
 {% block content %}
-<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Home</a> <i>&rsaquo;</i> 
-    <a href="{% url 'semester_list' %}" class="primary1">Semester List</a> <i>&rsaquo;</i> Semester Add & update</div>
+<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Bosh saxifa</a> <i>&rsaquo;</i> 
+    <a href="{% url 'semester_list' %}" class="primary1">Semester ro'yxati</a> <i>&rsaquo;</i> Semester joylash yoki taxrirlash</div>
 <br>
 
 {% if messages %}
@@ -25,11 +25,11 @@
 <div class="row">
     <div class="col-md-6 mx-auto">
         <div class="card pb-3">
-            <p class="form-title">Semester Add & update Form</p>
+            <p class="form-title">Semester joylash yoki taxrirlash</p>
             <div class="container"><br>
                 <form action="" method="POST">{% csrf_token %}
                     {% for f in form %}{{ f.label }}{{ f }}<hr>{% endfor %}
-                    <input class="btn btn-primary" type="submit" value="Save">
+                    <input class="btn btn-primary" type="submit" value="Saqlash">
                 </form>
             </div>
         </div>

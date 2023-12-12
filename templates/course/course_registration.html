@@ -5,9 +5,9 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Home</a> Course Registration</div>
+<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Bosh saxifa</a> Kursga yozilish</div>
 
-<p class="title-1">Course Add & Drop</p>
+<p class="title-1">Kursni qo'shish va tashlash</p>
 
 {% if messages %}
 {% for message in messages %}
@@ -27,8 +27,8 @@
 {% if is_calender_on == False %}
 
 <div class="alert bg-danger">
-    <h1 class="text-light text-center">Calender is off</h1>
-    <h5 class="text-light text-center">Check the university calender</h5>
+    <h1 class="text-light text-center">Taqvim oʻchirilgan</h1>
+    <h5 class="text-light text-center">Universitet kalendarini tekshiring</h5>
 </div>
 
 {% else %}
@@ -38,30 +38,30 @@
 <form action="{% url 'course_registration' %}" method="POST">{% csrf_token %}
     <div class="col-md-12 p-0 bg-white">
         <p class="form-title">
-            <b>Course Add</b>
+            <b>Kurs qo'shish</b>
         <div class="level-wrapper">
             <div class="info-text">{{ student.level }}</div>
         </div>
         </p>
         <div class="container">
             <div class="d-flex justify-content-between mb-3">
-                <button title="Save Score" type="submit" class="btn btn-primary"><i class="fa fa-plus"></i> Add
-                    Selected</button>
+                <button title="Save Score" type="submit" class="btn btn-primary"><i class="fa fa-plus"></i> Qo'shish
+                    Tanlangan</button>
             </div>
 
             <div class="table-responsive p-0 px-2 mt-2">
-                <div class="table-title"><u>First Semester:</u></div>
+                <div class="table-title"><u>Birinchi semestr:</u></div>
                 <div class="table-shadow">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Mark</th>
-                                <th>Course Code</th>
-                                <th>Course Title</th>
+                                <th>Ism</th>
+                                <th>Kurs kodi</th>
+                                <th>Kurs nomi</th>
                                 <th>Cr.Hr(s)</th>
-                                <th>Year</th>
-                                <th>Classification</th>
-                                <th>Elective Group</th>
+                                <th>Yil</th>
+                                <th>Tasniflash</th>
+                                <th>Tanlangan guruh</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -76,9 +76,9 @@
                                 <td>{{ course.credit }}</td>
                                 <td>{{ course.year }}</td>
                                 {% if course.is_elective %}
-                                <td>Elective</td>
+                                <td>Tanlangan</td>
                                 {% else %}
-                                <td>Core</td>
+                                <td>Yadro</td>
                                 {% endif %}
                                 <th>-</th>
                             </tr>
@@ -90,7 +90,7 @@
                                 <td></td>
                                 <td>
                                     <span class="text-danger">
-                                        <i class="far fa-frown"></i>No Course.
+                                        <i class="far fa-frown"></i>Kurs mavjud emas.
                                     </span>
                                 </td>
                                 <td></td>
@@ -104,7 +104,7 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td><b>First semester Credit(s):</b> {{ total_first_semester_credit }} </td>
+                                <td><b>Birinchi semestr kreditlari:</b> {{ total_first_semester_credit }} </td>
                                 <td></td>
                             </tr>
                         </tbody>
@@ -113,18 +113,18 @@
             </div>
 
             <div class="table-responsive p-0 px-2 mt-2">
-                <div class="table-title"><u>Second Semester:</u></div>
+                <div class="table-title"><u>Ikkinchi semestr:</u></div>
                 <div class="table-shadow">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Mark</th>
-                                <th>Course Code</th>
-                                <th>Course Title</th>
+                                <th>Ism</th>
+                                <th>Kurs kodi</th>
+                                <th>Kurs nomi</th>
                                 <th>Cr.Hr(s)</th>
-                                <th>Year</th>
-                                <th>Classification</th>
-                                <th>Elective Group</th>
+                                <th>Yil</th>
+                                <th>Tasniflash</th>
+                                <th>Tanlangan guruh</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -139,9 +139,9 @@
                                 <td>{{ course.credit }}</td>
                                 <td>{{ course.year }}</td>
                                 {% if course.is_elective %}
-                                <td>Elective</td>
+                                <td>Tanlangan</td>
                                 {% else %}
-                                <td>Core</td>
+                                <td>Yadro</td>
                                 {% endif %}
                                 <th>-</th>
                             </tr>
@@ -153,7 +153,7 @@
                                 <td></td>
                                 <td>
                                     <span class="text-danger">
-                                        <i class="far fa-frown"></i>No Course.
+                                        <i class="far fa-frown"></i>Kurs mavjud emas.
                                     </span>
                                 </td>
                                 <td></td>

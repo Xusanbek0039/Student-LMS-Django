@@ -1,17 +1,16 @@
 {% extends 'base.html' %}
-{% block title %} {{ title }} | DjangoSMS{% endblock title %}
+{% block title %} {{ title }} | Student LMS{% endblock title %}
 {% load static %}
 
 {% block content %}
 
-<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Home</a>
-    <a href="{% url 'programs' %}" class="primary1">Programs</a> {{ program.title }}
+<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Bosh saxifa</a>
+    <a href="{% url 'programs' %}" class="primary1">Dasturlar</a> {{ program.title }}
 </div>
 
 {% if request.user.is_superuser %}
 <div class="manage-wrap">
-    <a class="btn btn-sm btn-primary" href="{% url 'course_add' pk=program.pk %}"><i class="fas fa-plus"></i>Add
-        Course</a>
+    <a class="btn btn-sm btn-primary" href="{% url 'course_add' pk=program.pk %}"><i class="fas fa-plus"></i>Kurs qo'shish</a>
 </div>
 {% endif %}
 
@@ -43,7 +42,7 @@
         <input class="au-input" type="text" name="code" placeholder="Course Code" value="{{ request.GET.code }}" />
         <input class="au-input" type="number" name="year" placeholder="Course Year" value="{{ request.GET.year }}" />
         <button class="btn btn-light" type="submit">
-            <i class="fas fa-search"></i> filter
+            <i class="fas fa-search"></i> Filtrlash
         </button>
     </form>
 </div>
@@ -53,16 +52,16 @@
         <table class="table table-light table-striped">
             <thead>
                 <tr>
-                    <th>#</th>
-                    <th> Course Name </th>
-                    <th> Course Code </th>
+                    <th>№</th>
+                    <th> Kurs nomi </th>
+                    <th> Kurs kodi </th>
                     <th> Cr.Hr </th>
-                    <th> Level </th>
-                    <th> Year </th>
+                    <th> Darja </th>
+                    <th> Yil </th>
                     <th> Semester </th>
-                    <th> Current Semester </th>
+                    <th> Joriy semestr </th>
                     {% if request.user.is_superuser %}
-                    <th>Action</th>
+                    <th>Urinishlar</th>
                     {% endif %}
                 </tr>
             </thead>
@@ -93,10 +92,10 @@
                             </button>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                                 <a class="dropdown-item" href="{% url 'edit_course' slug=course.slug %}">
-                                    <i class="fas fa-pencil-alt"></i> Edit
+                                    <i class="fas fa-pencil-alt"></i> Taxrirlash
                                 </a>
                                 <a class="dropdown-item" href="{% url 'delete_course' slug=course.slug %}">
-                                    <i class="fas fa-trash-alt"></i> Delete
+                                    <i class="fas fa-trash-alt"></i> O'chirish
                                 </a>
                             </div>
                         </div>

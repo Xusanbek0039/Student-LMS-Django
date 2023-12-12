@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
-{% block title %} My Courses | DjangoSMS{% endblock title %}
+{% block title %} Mening kurslarim | Student LMS{% endblock title %}
 {% load static %}
 
 {% block content %}
 
-<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Home</a> <i>&rsaquo;</i> My Courses</div>
+<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Bosh saxifa</a> <i>&rsaquo;</i> Mening kurslarim</div>
 
 {% if request.user.is_student %}
     <div class="title-1">{{ student.department.title }}</div>
@@ -15,7 +15,7 @@
 {% endif %}
 
 {% if request.user.is_lecturer %}
-    <div class="title-1">My Courses</div>
+    <div class="title-1">Mening kurslarim </div>
     <div class="title-line"></div>
 {% endif %}
 
@@ -35,19 +35,19 @@
 
 {% if request.user.is_student %}
 <div class="table-responsive p-3 mt-3">
-    <div class="table-title"><u>Taken Courses:</u></div>
+    <div class="table-title"><u>Qabul qilingan kurslar:</u></div>
     <div class="table-shadow">
         <table class="table table-light">
             <thead>
                 <tr>
-                    <th>#</th>
-                    <th> Course Name </th>
-                    <th> Course Code </th>
+                    <th>№</th>
+                    <th> Kurs nomi </th>
+                    <th> Kurs kodi </th>
                     <th> Cr.Hr </th>
-                    <th> Year </th>
+                    <th> Yil </th>
                     <th> Semester </th>
-                    <th> Current Semester </th>
-                    <th> Taken </th>
+                    <th> Joriy semestr </th>
+                    <th> Qabul qilingan  </th>
                 </tr>
             </thead>
             <tbody>
@@ -68,7 +68,7 @@
                         {% endif %}
                     </th>
                     <td class="success">
-                        <i class="fas fa-check-circle"></i> Taken
+                        <i class="fas fa-check-circle"></i> Qabul qilingan
                     </td>
                 </tr>
                 {% endfor %}
@@ -79,18 +79,18 @@
 {% endif %}
 
 <div class="table-responsive p-3">
-    <div class="table-title"><u>All Courses:</u></div>
+    <div class="table-title"><u>Barcha kurslar:</u></div>
     <div class="table-shadow">
         <table class="table table-light">
             <thead>
                 <tr>
-                    <th>#</th>
-                    <th> Course Name </th>
-                    <th> Course Code </th>
+                    <th>№</th>
+                    <th> Kurs nomi </th>
+                    <th> Kurs kodi </th>
                     <th> Cr.Hr </th>
-                    <th> Year </th>
+                    <th> Yil </th>
                     <th> Semester </th>
-                    <th> Current Semester </th>
+                    <th> Joriy semester </th>
                 </tr>
             </thead>
             <tbody>

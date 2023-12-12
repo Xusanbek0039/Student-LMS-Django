@@ -5,11 +5,11 @@
 {% block content %}
 
 <div class="container">
-    <div id="input-nav" class="p-2">Home</div>
+    <div id="input-nav" class="p-2">Bosh saxifa</div>
 
     {% if request.user.is_superuser %}
     <div class="manage-wrap">
-        <a class="btn btn-primary" href="{% url 'add_item' %}"><i class="fas fa-plus"></i>Add New Post</a>
+        <a class="btn btn-primary" href="{% url 'add_item' %}"><i class="fas fa-plus"></i>Yangi post joylash</a>
     </div>
     {% endif %}
 
@@ -40,14 +40,14 @@
         }
     </style>
 
-    <div class="title-1">News & Events</div>
+    <div class="title-1">Yangiliklar va Voqealar</div>
 
     <ul class="col-md-2 ml-auto d-flex">
         <li class="mr-3">
-            <span class="color-indicator bg-primary"></span> News
+            <span class="color-indicator bg-primary"></span> Yangilik
         </li>
         <li>
-            <span class="color-indicator bg-purple"></span> Events
+            <span class="color-indicator bg-purple"></span> Voqea
         </li>
     </ul>
     <style>
@@ -67,7 +67,7 @@
         {% for item in items %}
         <div class="col-md-4 mb-4">
             <div class="bg-white border">
-                <div class="card-header-ne {% if item.posted_as == 'News' %}news{% else %}events{% endif %} p-2">
+                <div class="card-header-ne {% if item.posted_as == 'Yangiliklar' %}yangiliklar{% else %}events{% endif %} p-2">
                     <span class="p-0">
                         {{ item.title|title }}
                     </span>
@@ -79,9 +79,9 @@
                         </button>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="{% url 'edit_post' pk=item.id %}"><i
-                                    class="fas fa-pencil-alt"></i> Edit</a>
+                                    class="fas fa-pencil-alt"></i> Taxrirlash</a>
                             <a class="dropdown-item" href="{% url 'delete_post' pk=item.id %}"><i
-                                    class="fas fa-trash-alt"></i> Delete</a>
+                                    class="fas fa-trash-alt"></i> O'chirish</a>
                         </div>
                     </div>
                     {% endif %}
@@ -91,7 +91,7 @@
 
                 <div class="date-wrapper">
                     <i class="fa fa-calendar mr-2"></i>
-                    {{ item.updated_date|timesince }} ago
+                    {{ item.updated_date|timesince }} oldin
                 </div>
 
             </div>
@@ -101,7 +101,7 @@
 
     {% else %}
     <p>
-        <i class="far fa-frown fa-2x"></i>So empty.
+        <i class="far fa-frown fa-2x"></i>Afsuski xech narsa yo'q!
     </p>
 
     {% endif %}
