@@ -31,7 +31,7 @@ def program_view(request):
         programs = Program.objects.filter(title__icontains=program_filter)
 
     return render(request, 'course/program_list.html', {
-        'title': "Programs | DjangoSMS",
+        'title': "Dasturlar | Student LMS",
         'programs': programs,
     })
 
@@ -43,15 +43,15 @@ def program_add(request):
         form = ProgramForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, request.POST.get('title') + ' program has been created.')
+            messages.success(request, request.POST.get('title') + ' dasturi yaratildi.')
             return redirect('programs')
         else:
-            messages.error(request, 'Correct the error(S) below.')
+            messages.error(request, 'Quyidagi xatolarni tuzating.')
     else:
         form = ProgramForm()
 
     return render(request, 'course/program_add.html', {
-        'title': "Add Program | DjangoSMS",
+        'title': "Dastur qo'shish | Student LMS",
         'form': form,
     })
 
@@ -69,7 +69,7 @@ def program_detail(request, pk):
 
     return render(request, 'course/program_single.html', {
         'title': program.title,
-        'program': program, 'courses': courses, 'credits': credits
+        'Dastur': program, 'Kurs': courses, 'Kredit': credits
     }, )
 
 
@@ -82,13 +82,13 @@ def program_edit(request, pk):
         form = ProgramForm(request.POST, instance=program)
         if form.is_valid():
             form.save()
-            messages.success(request, str(request.POST.get('title')) + ' program has been updated.')
-            return redirect('programs')
+            messages.success(request, str(request.POST.get('title')) + 'dastur yangilandi.')
+            return redirect('Dasturlar')
     else:
         form = ProgramForm(instance=program)
 
     return render(request, 'course/program_add.html', {
-        'title': "Edit Program | DjangoSMS",
+        'title': "Dastur taxrirlash | Student LMS",
         'form': form
     })
 
@@ -99,9 +99,9 @@ def program_delete(request, pk):
     program = Program.objects.get(pk=pk)
     title = program.title
     program.delete()
-    messages.success(request, 'Program ' + title + ' has been deleted.')
+    messages.success(request, 'Dastur ' + title + ' o\'chirildi')
 
-    return redirect('programs')
+    return redirect('Dasturlar')
 # ########################################################
 
 # ########################################################
@@ -136,16 +136,16 @@ def course_add(request, pk):
         course_code = request.POST.get('code')
         if form.is_valid():
             form.save()
-            messages.success(request, (course_name + '(' + course_code + ')' + ' has been created.'))
+            messages.success(request, (course_name + '(' + course_code + ')' + ' yaratilgan.'))
             return redirect('program_detail', pk=request.POST.get('program'))
         else:
-            messages.error(request, 'Correct the error(s) below.')
+            messages.error(request, 'Quyidagi xatoliklarni bartaraf eting!')
     else:
         form = CourseAddForm(initial={'program': Program.objects.get(pk=pk)})
 
     return render(request, 'course/course_add.html', {
-        'title': "Add Course | DjangoSMS",
-        'form': form, 'program': pk, 'users': users
+        'title': "Kurs qo'shish | Student LMS",
+        'Shakl': form, 'Dastur': pk, 'Foydalanuvchi': users
     }, )
 
 
@@ -159,15 +159,15 @@ def course_edit(request, slug):
         course_code = request.POST.get('code')
         if form.is_valid():
             form.save()
-            messages.success(request, (course_name + '(' + course_code + ')' + ' has been updated.'))
+            messages.success(request, (course_name + '(' + course_code + ')' + ' yangilandi.'))
             return redirect('program_detail', pk=request.POST.get('program'))
         else:
-            messages.error(request, 'Correct the error(s) below.')
+            messages.error(request, 'Quyidagi xatoliklarni bartaraf eting!')
     else:
         form = CourseAddForm(instance=course)
 
     return render(request, 'course/course_add.html', {
-        'title': "Edit Course | DjangoSMS",
+        'title': "Kurs taxrirlash | Student LMS",
         # 'form': form, 'program': pk, 'course': pk
         'form': form
     }, )
@@ -179,7 +179,7 @@ def course_delete(request, slug):
     course = Course.objects.get(slug=slug)
     # course_name = course.title
     course.delete()
-    messages.success(request, 'Course ' + course.title + ' has been deleted.')
+    messages.success(request, 'Kurs: ' + course.title + ' o\'chirildi')
 
     return redirect('program_detail', pk=course.program.id)
 # ########################################################
@@ -200,8 +200,8 @@ class CourseAllocationFormView(CreateView):
 
     def form_valid(self, form):
         # if a staff has been allocated a course before update it else create new
-        lecturer = form.cleaned_data['lecturer']
-        selected_courses = form.cleaned_data['courses']
+        lecturer = form.cleaned_data['O\'qituvchi']
+        selected_courses = form.cleaned_data['Kurs']
         courses = ()
         for course in selected_courses:
             courses += (course.pk,)
@@ -218,7 +218,7 @@ class CourseAllocationFormView(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = "Assign Course | DjangoSMS"
+        context['title'] = "Assign Course | Student LMS"
         return context
 
 
@@ -226,7 +226,7 @@ class CourseAllocationFormView(CreateView):
 def course_allocation_view(request):
     allocated_courses = CourseAllocation.objects.all()
     return render(request, 'course/course_allocation_view.html', {
-        'title': "Course Allocations | DjangoSMS",
+        'title': "Course Allocations | Student LMS",
         "allocated_courses": allocated_courses
     })
 
@@ -245,7 +245,7 @@ def edit_allocated_course(request, pk):
         form = EditCourseAllocationForm(instance=allocated)
 
     return render(request, 'course/course_allocation_form.html', {
-        'title': "Edit Course Allocated | DjangoSMS",
+        'title': "Edit Course Allocated | Student LMS",
         'form': form, 'allocated': pk
     }, )
 
@@ -277,7 +277,7 @@ def handle_file_upload(request, slug):
     else:
         form = UploadFormFile()
     return render(request, 'upload/upload_file_form.html', {
-        'title': "File Upload | DjangoSMS",
+        'title': "File Upload | Student LMS",
         'form': form, 'course': course
     })
 
@@ -326,7 +326,7 @@ def handle_video_upload(request, slug):
     else:
         form = UploadFormVideo()
     return render(request, 'upload/upload_video_form.html', {
-        'title': "Video Upload | DjangoSMS",
+        'title': "Video Upload | Student LMS",
         'form': form, 'course': course
     })
 
