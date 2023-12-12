@@ -69,7 +69,7 @@ def program_detail(request, pk):
 
     return render(request, 'course/program_single.html', {
         'title': program.title,
-        'Dastur': program, 'Kurs': courses, 'Kredit': credits
+        'program': program, 'courses': courses, 'credits': credits
     }, )
 
 
@@ -83,7 +83,7 @@ def program_edit(request, pk):
         if form.is_valid():
             form.save()
             messages.success(request, str(request.POST.get('title')) + 'dastur yangilandi.')
-            return redirect('Dasturlar')
+            return redirect('programs')
     else:
         form = ProgramForm(instance=program)
 
@@ -101,7 +101,7 @@ def program_delete(request, pk):
     program.delete()
     messages.success(request, 'Dastur ' + title + ' o\'chirildi')
 
-    return redirect('Dasturlar')
+    return redirect('program')
 # ########################################################
 
 # ########################################################
@@ -145,7 +145,7 @@ def course_add(request, pk):
 
     return render(request, 'course/course_add.html', {
         'title': "Kurs qo'shish | Student LMS",
-        'Shakl': form, 'Dastur': pk, 'Foydalanuvchi': users
+        'from': form, 'programs': pk, 'users': users
     }, )
 
 
@@ -200,8 +200,8 @@ class CourseAllocationFormView(CreateView):
 
     def form_valid(self, form):
         # if a staff has been allocated a course before update it else create new
-        lecturer = form.cleaned_data['O\'qituvchi']
-        selected_courses = form.cleaned_data['Kurs']
+        lecturer = form.cleaned_data['lecturer']
+        selected_courses = form.cleaned_data['courses']
         courses = ()
         for course in selected_courses:
             courses += (course.pk,)
@@ -218,7 +218,7 @@ class CourseAllocationFormView(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = "Assign Course | Student LMS"
+        context['title'] = "Kursni tayinlash | Student LMS"
         return context
 
 
@@ -226,7 +226,7 @@ class CourseAllocationFormView(CreateView):
 def course_allocation_view(request):
     allocated_courses = CourseAllocation.objects.all()
     return render(request, 'course/course_allocation_view.html', {
-        'title': "Course Allocations | Student LMS",
+        'title': "Kurs taqsimoti| Student LMS",
         "allocated_courses": allocated_courses
     })
 
@@ -239,13 +239,13 @@ def edit_allocated_course(request, pk):
         form = EditCourseAllocationForm(request.POST, instance=allocated)
         if form.is_valid():
             form.save()
-            messages.success(request, 'course assigned has been updated.')
+            messages.success(request, ' tayinlangan kurs yangilandi.')
             return redirect('course_allocation_view')
     else:
         form = EditCourseAllocationForm(instance=allocated)
 
     return render(request, 'course/course_allocation_form.html', {
-        'title': "Edit Course Allocated | Student LMS",
+        'title': "Ajratilgan kursni tahrirlash | Student LMS",
         'form': form, 'allocated': pk
     }, )
 
@@ -255,7 +255,7 @@ def edit_allocated_course(request, pk):
 def deallocate_course(request, pk):
     course = CourseAllocation.objects.get(pk=pk)
     course.delete()
-    messages.success(request, 'successfully deallocate!')
+    messages.success(request, 'muvaffaqiyatli ajratildi!')
     return redirect("course_allocation_view")
 # ########################################################
 
@@ -268,17 +268,17 @@ def deallocate_course(request, pk):
 def handle_file_upload(request, slug):
     course = Course.objects.get(slug=slug)
     if request.method == 'POST':
-        form = UploadFormFile(request.POST, request.FILES, {'course': course})
+        form = UploadFormFile(request.POST, request.FILES, {'Kurs': course})
         # file_name = request.POST.get('name')
         if form.is_valid():
             form.save()
-            messages.success(request, (request.POST.get('title') + ' has been uploaded.'))
+            messages.success(request, (request.POST.get('title') + ' yuklangan.'))
             return redirect('course_detail', slug=slug)
     else:
         form = UploadFormFile()
     return render(request, 'upload/upload_file_form.html', {
-        'title': "File Upload | Student LMS",
-        'form': form, 'course': course
+        'title': "Fayl yuklash | Student LMS",
+        'Shakl': form, 'Kurs': course
     })
 
 
@@ -292,14 +292,14 @@ def handle_file_edit(request, slug, file_id):
         # file_name = request.POST.get('name')
         if form.is_valid():
             form.save()
-            messages.success(request, (request.POST.get('title') + ' has been updated.'))
+            messages.success(request, (request.POST.get('title') + ' yangilandi.'))
             return redirect('course_detail', slug=slug)
     else:
         form = UploadFormFile(instance=instance)
 
     return render(request, 'upload/upload_file_form.html', {
         'title': instance.title,
-        'form': form, 'course': course})
+        'Shakl': form, 'Kurs': course})
 
 
 def handle_file_delete(request, slug, file_id):
@@ -307,7 +307,7 @@ def handle_file_delete(request, slug, file_id):
     # file_name = file.name
     file.delete()
 
-    messages.success(request, (file.title + ' has been deleted.'))
+    messages.success(request, (file.title + ' o\'chirildi.'))
     return redirect('course_detail', slug=slug)
 
 # ########################################################
@@ -318,16 +318,16 @@ def handle_file_delete(request, slug, file_id):
 def handle_video_upload(request, slug):
     course = Course.objects.get(slug=slug)
     if request.method == 'POST':
-        form = UploadFormVideo(request.POST, request.FILES, {'course': course})
+        form = UploadFormVideo(request.POST, request.FILES, {'Kurs': course})
         if form.is_valid():
             form.save()
-            messages.success(request, (request.POST.get('title') + ' has been uploaded.'))
+            messages.success(request, (request.POST.get('title') + ' yangilandi!'))
             return redirect('course_detail', slug=slug)
     else:
         form = UploadFormVideo()
     return render(request, 'upload/upload_video_form.html', {
-        'title': "Video Upload | Student LMS",
-        'form': form, 'course': course
+        'title': "Video yuklash | Student LMS",
+        'Shakl': form, 'Kurs': course
     })
 
 
@@ -348,14 +348,14 @@ def handle_video_edit(request, slug, video_slug):
         form = UploadFormVideo(request.POST, request.FILES, instance=instance)
         if form.is_valid():
             form.save()
-            messages.success(request, (request.POST.get('title') + ' has been updated.'))
+            messages.success(request, (request.POST.get('title') + ' yuklandi!'))
             return redirect('course_detail', slug=slug)
     else:
         form = UploadFormVideo(instance=instance)
 
     return render(request, 'upload/upload_video_form.html', {
         'title': instance.title,
-        'form': form, 'course': course})
+        'Shakl': form, 'Kurs': course})
 
 
 def handle_video_delete(request, slug, video_slug):
@@ -363,7 +363,7 @@ def handle_video_delete(request, slug, video_slug):
     # video = UploadVideo.objects.get(slug=video_slug)
     video.delete()
 
-    messages.success(request, (video.title + ' has been deleted.'))
+    messages.success(request, (video.title + ' o\'chirildi!'))
     return redirect('course_detail', slug=slug)
 # ########################################################
 
@@ -385,7 +385,7 @@ def course_registration(request):
             course = Course.objects.get(pk=ids[s])
             obj = TakenCourse.objects.create(student=student, course=course)
             obj.save()
-            messages.success(request, 'Courses Registered Successfully!')
+            messages.success(request, 'Kurslar muvaffaqiyatli ro\'yxatdan o\'tdi!')
         return redirect('course_registration')
     else:
         # student = Student.objects.get(student__pk=request.user.id)
@@ -414,9 +414,9 @@ def course_registration(request):
         total_sec_semester_credit = 0
         total_registered_credit = 0
         for i in courses:
-            if i.semester == "First":
+            if i.semester == "Birinchi":
                 total_first_semester_credit += int(i.credit)
-            if i.semester == "Second":
+            if i.semester == "Ikkinchi":
                 total_sec_semester_credit += int(i.credit)
         for i in registered_courses:
             total_registered_credit += int(i.credit)
@@ -449,7 +449,7 @@ def course_drop(request):
             course = Course.objects.get(pk=ids[s])
             obj = TakenCourse.objects.get(student=student, course=course)
             obj.delete()
-            messages.success(request, 'Successfully Dropped!')
+            messages.success(request, 'Muvaffaqiyatli tashlandi!')
         return redirect('course_registration')
 # ########################################################
 
@@ -459,7 +459,7 @@ def user_course_list(request):
     if request.user.is_lecturer:
         courses = Course.objects.filter(allocated_course__lecturer__pk=request.user.id)
 
-        return render(request, 'course/user_course_list.html', {'courses': courses})
+        return render(request, 'course/user_course_list.html', {'Kurs': courses})
 
     elif request.user.is_student:
         student = Student.objects.get(student__pk=request.user.id)
@@ -467,9 +467,9 @@ def user_course_list(request):
         courses = Course.objects.filter(level=student.level).filter(program__pk=student.department.id)
 
         return render(request, 'course/user_course_list.html', {
-            'student': student,
-            'taken_courses': taken_courses,
-            'courses': courses
+            'Talaba': student,
+            'Olingan kurslar': taken_courses,
+            'Kurslar': courses
         })
 
     else:
