@@ -11,31 +11,31 @@ from .validators import ASCIIUsernameValidator
 
 
 # LEVEL_COURSE = "Level course"
-BACHLOAR_DEGREE = "Bakalavr"
-MASTER_DEGREE = "Magistr"
+BACHLOAR_DEGREE = "Bachloar"
+MASTER_DEGREE = "Master"
 
 LEVEL = (
     # (LEVEL_COURSE, "Level course"),
-    (BACHLOAR_DEGREE, "Bakalavr diplomi"),
-    (MASTER_DEGREE, "Magistr diplomi"),
+    (BACHLOAR_DEGREE, "Bachloar Degree"),
+    (MASTER_DEGREE, "Master Degree"),
 )
 
-FATHER = "Dada"
-MOTHER = "Ona"
-BROTHER = "Aka"
-SISTER = "Singil"
-GRAND_MOTHER = "Katta opa"
-GRAND_FATHER = "Katta aka"
-OTHER = "Boshqalar"
+FATHER = "Father"
+MOTHER = "Mother"
+BROTHER = "Brother"
+SISTER = "Sister"
+GRAND_MOTHER = "Grand mother"
+GRAND_FATHER = "Grand father"
+OTHER = "Other"
 
 RELATION_SHIP  = (
-    (FATHER, "Dada"),
-    (MOTHER, "Ona"),
-    (BROTHER, "Aka"),
-    (SISTER, "Singil"),
-    (GRAND_MOTHER, "Katta opa"),
-    (GRAND_FATHER, "Katta aka"),
-    (OTHER, "boshqalar"),
+    (FATHER, "Father"),
+    (MOTHER, "Mother"),
+    (BROTHER, "Brother"),
+    (SISTER, "Sister"),
+    (GRAND_MOTHER, "Grand mother"),
+    (GRAND_FATHER, "Grand father"),
+    (OTHER, "Other"),
 )
 
 class UserManager(UserManager):
@@ -58,7 +58,7 @@ class User(AbstractUser):
     is_dep_head = models.BooleanField(default=False)
     phone = models.CharField(max_length=60, blank=True, null=True)
     address = models.CharField(max_length=60, blank=True, null=True)
-    picture = models.ImageField(upload_to='profile_pictures/%y/%m/%d/', default='default.png', null=True) # rasm yuklanmagan holsa defult.png da qoladi
+    picture = models.ImageField(upload_to='profile_pictures/%y/%m/%d/', default='default.png', null=True)
     email = models.EmailField(blank=True, null=True)
 
     username_validator = ASCIIUsernameValidator()
@@ -75,16 +75,16 @@ class User(AbstractUser):
     def __str__(self):
         return '{} ({})'.format(self.username, self.get_full_name)
 
-    @property                   # tabaqalar yani ajratishlar 
+    @property
     def get_user_role(self):
         if self.is_superuser:
-            return "Boshliq"
+            return "Admin"
         elif self.is_student:
-            return "Talaba"
+            return "Student"
         elif self.is_lecturer:
-            return "Ustoz"
+            return "Lecturer"
         elif self.is_parent:
-            return "Ota-ona"
+            return "Parent"
 
     def get_picture(self):
         try:
@@ -145,8 +145,8 @@ class Student(models.Model):
 
 class Parent(models.Model):
     """
-     Talabani ota-onasi bilan bog'lash, ota-onalar mumkin
-     faqat bog'langan talabalar ma'lumotlarini ko'rish
+    Connect student with their parent, parents can 
+    only view their connected students information
     """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     student = models.OneToOneField(Student, null=True, on_delete=models.SET_NULL)

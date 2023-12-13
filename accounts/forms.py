@@ -12,35 +12,35 @@ from .models import *
 class StaffAddForm(UserCreationForm):
     username = forms.CharField(
         max_length=30, widget=forms.TextInput(attrs={'type': 'text', 'class': 'form-control', }),
-        label="Foydalanuvchi nomi", )
+        label="Username", )
 
     first_name = forms.CharField(
         max_length=30, widget=forms.TextInput(attrs={'type': 'text', 'class': 'form-control', }),
-        label="Ismingiz", )
+        label="First Name", )
 
     last_name = forms.CharField(
         max_length=30, widget=forms.TextInput(attrs={'type': 'text', 'class': 'form-control', }),
-        label="Familiyangiz", )
+        label="Last Name", )
 
     address = forms.CharField(
         max_length=30, widget=forms.TextInput(attrs={'type': 'text', 'class': 'form-control', }),
-        label="Manzilingiz", )
+        label="Address", )
 
     phone = forms.CharField(
         max_length=30, widget=forms.TextInput(attrs={'type': 'text', 'class': 'form-control', }),
-        label="Telefon No.", )
+        label="Mobile No.", )
 
     email = forms.CharField(
         max_length=30, widget=forms.TextInput(attrs={'type': 'text', 'class': 'form-control', }),
-        label="Pochtangiz", )
+        label="Email", )
 
     password1 = forms.CharField(
         max_length=30, widget=forms.TextInput(attrs={'type': 'password', 'class': 'form-control', }),
-        label="Parolingiz", )
+        label="Password", )
 
     password2 = forms.CharField(
         max_length=30, widget=forms.TextInput(attrs={'type': 'password', 'class': 'form-control', }),
-        label="Parolni tasdiqlash", )
+        label="Password Confirmation", )
 
     class Meta(UserCreationForm.Meta):
         model = User
@@ -69,7 +69,7 @@ class StudentAddForm(UserCreationForm):
                 'id': 'username_id'
             }
         ),
-        label="Foydalanuvchi nomi",
+        label="Username",
     )
     address = forms.CharField(
         max_length=30,
@@ -79,7 +79,7 @@ class StudentAddForm(UserCreationForm):
                 'class': 'form-control',
             }
         ),
-        label="Manzil",
+        label="Address",
     )
 
     phone = forms.CharField(
@@ -90,7 +90,7 @@ class StudentAddForm(UserCreationForm):
                 'class': 'form-control',
             }
         ),
-        label="Telefon No.",
+        label="Mobile No.",
     )
 
     first_name = forms.CharField(
@@ -101,7 +101,7 @@ class StudentAddForm(UserCreationForm):
                 'class': 'form-control',
             }
         ),
-        label="Ismingiz",
+        label="First name",
     )
 
     last_name = forms.CharField(
@@ -112,7 +112,7 @@ class StudentAddForm(UserCreationForm):
                 'class': 'form-control',
             }
         ),
-        label="Familiyangiz",
+        label="Last name",
     )
 
     level = forms.CharField(
@@ -127,7 +127,7 @@ class StudentAddForm(UserCreationForm):
     department = forms.ModelChoiceField(
         queryset=Program.objects.all(),
         widget=forms.Select(attrs={'class': 'browser-default custom-select form-control'}),
-        label="Bo'lim",
+        label="Department",
     )
 
     email = forms.EmailField(
@@ -137,16 +137,16 @@ class StudentAddForm(UserCreationForm):
                 'class': 'form-control',
             }
         ),
-        label="Email manzil",
+        label="Email Address",
     )
 
     password1 = forms.CharField(
         max_length=30, widget=forms.TextInput(attrs={'type': 'password', 'class': 'form-control', }),
-        label="Parolingiz", )
+        label="Password", )
 
     password2 = forms.CharField(
         max_length=30, widget=forms.TextInput(attrs={'type': 'password', 'class': 'form-control', }),
-        label="Parolni tasdiqlash", )
+        label="Password Confirmation", )
 
     # def validate_email(self):
     #     email = self.cleaned_data['email']
@@ -178,23 +178,23 @@ class StudentAddForm(UserCreationForm):
 class ProfileUpdateForm(UserChangeForm):
     email = forms.EmailField(
         widget=forms.TextInput(attrs={'type': 'email', 'class': 'form-control', }),
-        label="Email manzil", )
+        label="Email Address", )
 
     first_name = forms.CharField(
         widget=forms.TextInput(attrs={'type': 'text', 'class': 'form-control', }),
-        label="Ismingiz", )
+        label="First Name", )
 
     last_name = forms.CharField(
         widget=forms.TextInput(attrs={'type': 'text', 'class': 'form-control', }),
-        label="Familiyangiz", )
+        label="Last Name", )
 
     phone = forms.CharField(
         widget=forms.TextInput(attrs={'type': 'text', 'class': 'form-control', }),
-        label="Telefon No.", )
+        label="Phone No.", )
 
     address = forms.CharField(
         widget=forms.TextInput(attrs={'type': 'text', 'class': 'form-control', }),
-        label="Yashsh joyingiz / to'lliq", )
+        label="Address / city", )
 
     class Meta:
         model = User
@@ -205,7 +205,7 @@ class EmailValidationOnForgotPassword(PasswordResetForm):
     def clean_email(self):
         email = self.cleaned_data['email']
         if not User.objects.filter(email__iexact=email, is_active=True).exists():
-            msg = "Belgilangan elektron pochta manzili bilan ro'yxatdan o'tgan foydalanuvchi yo'q. "
+            msg = "There is no user registered with the specified E-mail address. "
             self.add_error('email', msg)
             return email
 
@@ -219,7 +219,7 @@ class ParentAddForm(UserCreationForm):
                 'class': 'form-control',
             }
         ),
-        label="Foydalanuvchi nomi",
+        label="Username",
     )
     address = forms.CharField(
         max_length=30,
@@ -229,7 +229,7 @@ class ParentAddForm(UserCreationForm):
                 'class': 'form-control',
             }
         ),
-        label="Manzil",
+        label="Address",
     )
 
     phone = forms.CharField(
@@ -240,7 +240,7 @@ class ParentAddForm(UserCreationForm):
                 'class': 'form-control',
             }
         ),
-        label="Telefon No.",
+        label="Mobile No.",
     )
 
     first_name = forms.CharField(
@@ -251,7 +251,7 @@ class ParentAddForm(UserCreationForm):
                 'class': 'form-control',
             }
         ),
-        label="Ismingiz",
+        label="First name",
     )
 
     last_name = forms.CharField(
@@ -262,7 +262,7 @@ class ParentAddForm(UserCreationForm):
                 'class': 'form-control',
             }
         ),
-        label="Familiyangiz",
+        label="Last name",
     )
 
     email = forms.EmailField(
@@ -272,13 +272,13 @@ class ParentAddForm(UserCreationForm):
                 'class': 'form-control',
             }
         ),
-        label="Email manzil",
+        label="Email Address",
     )
 
     student = forms.ModelChoiceField(
         queryset=Student.objects.all(),
         widget=forms.Select(attrs={'class': 'browser-default custom-select form-control'}),
-        label="Talaba",
+        label="Student",
     )
 
     relation_ship = forms.CharField(
@@ -290,11 +290,11 @@ class ParentAddForm(UserCreationForm):
 
     password1 = forms.CharField(
         max_length=30, widget=forms.TextInput(attrs={'type': 'password', 'class': 'form-control', }),
-        label="Parol", )
+        label="Password", )
 
     password2 = forms.CharField(
         max_length=30, widget=forms.TextInput(attrs={'type': 'password', 'class': 'form-control', }),
-        label="Parolni tasdiqlash", )
+        label="Password Confirmation", )
 
     # def validate_email(self):
     #     email = self.cleaned_data['email']
