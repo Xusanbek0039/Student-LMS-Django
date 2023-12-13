@@ -16,8 +16,8 @@ MASTER_DEGREE = "Master"
 
 LEVEL = (
     # (LEVEL_COURSE, "Level course"),
-    (BACHLOAR_DEGREE, "Bachloar Degree"),
-    (MASTER_DEGREE, "Master Degree"),
+    (BACHLOAR_DEGREE, "Bakalavr diplomi"),
+    (MASTER_DEGREE, "Magistr diplomi"),
 )
 
 FATHER = "Father"
@@ -29,13 +29,13 @@ GRAND_FATHER = "Grand father"
 OTHER = "Other"
 
 RELATION_SHIP  = (
-    (FATHER, "Father"),
-    (MOTHER, "Mother"),
-    (BROTHER, "Brother"),
-    (SISTER, "Sister"),
-    (GRAND_MOTHER, "Grand mother"),
-    (GRAND_FATHER, "Grand father"),
-    (OTHER, "Other"),
+    (FATHER, "Ota"),
+    (MOTHER, "Ona"),
+    (BROTHER, "Aka"),
+    (SISTER, "Singil"),
+    (GRAND_MOTHER, "Opa"),
+    (GRAND_FATHER, "Katta aka"),
+    (OTHER, "Boshqalar"),
 )
 
 class UserManager(UserManager):
@@ -78,13 +78,13 @@ class User(AbstractUser):
     @property
     def get_user_role(self):
         if self.is_superuser:
-            return "Admin"
+            return "Boshliq"
         elif self.is_student:
-            return "Student"
+            return "Talaba"
         elif self.is_lecturer:
-            return "Lecturer"
+            return "Ustoz"
         elif self.is_parent:
-            return "Parent"
+            return "Ota-ona"
 
     def get_picture(self):
         try:
@@ -144,10 +144,6 @@ class Student(models.Model):
 
 
 class Parent(models.Model):
-    """
-    Connect student with their parent, parents can 
-    only view their connected students information
-    """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     student = models.OneToOneField(Student, null=True, on_delete=models.SET_NULL)
     first_name = models.CharField(max_length=120)

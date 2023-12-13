@@ -48,10 +48,10 @@
 
     <div class="col-md-6 mx-auto">
         <div class="card">
-            <!-- {% if user.is_student %}
+            {% if user.is_student %}
             <p class="form-title"><i class="fas fa-book-open"></i>Enrolled Courses</p>
             <div class="dashboard-description">
-                {% if courses %}
+                {% if course %}
                     <div class="flex">
                         {% for course in courses %}
                             <div class="flex"><a class="edit-btn" href="{{ course.get_absolute_url }}">{{ course }}</a></div>
@@ -61,7 +61,7 @@
                         <div class="text-danger"><i class="far fa-frown"></i>No courses!</div>
                 {% endif %}
             </div>
-            {% endif %} -->
+            {% endif %} 
 
             {% if user.is_lecturer %}
             <p class="form-title"><i class="fas fa-book-open"></i>My Courses</p>

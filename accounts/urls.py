@@ -1,23 +1,13 @@
 from django.urls import path, include
-from django.contrib.auth.views import (
-    PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, 
-    PasswordResetCompleteView, LoginView, LogoutView
-    )
+from django.contrib.auth.views import *
 from django.contrib.auth.views import LogoutView
-from .views import (
-        profile, profile_single, admin_panel, 
-        profile_update, change_password, 
-        LecturerListView, StudentListView, 
-        staff_add_view, edit_staff, 
-        delete_staff, student_add_view, 
-        edit_student, delete_student, ParentAdd, validate_username, register
-    )
+from .views import *
 from .forms import EmailValidationOnForgotPassword
 
 
 urlpatterns = [
     path('', include('django.contrib.auth.urls')),
-    path('logout/', LogoutView.as_view(), name='logout'),
+    path('logout/', register, name='register'),
 
     path('admin_panel/', admin_panel, name='admin_panel'),
 

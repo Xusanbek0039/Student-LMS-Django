@@ -388,12 +388,12 @@ def course_registration(request):
             messages.success(request, 'Courses Registered Successfully!')
         return redirect('course_registration')
     else:
-        # student = Student.objects.get(student__pk=request.user.id)
+        student = Student.objects.get(student__pk=request.user.id)
         student = get_object_or_404(Student, student__id=request.user.id)
-        taken_courses = TakenCourse.objects.filter(student__student__id=request.user.id)
+        taken_courses = TakenCourse.objects.filter(student__id=request.user.id)
         t = ()
-        for i in taken_courses:
-            t += (i.course.pk,)
+        # for i in taken_courses:
+        #     t += (i.course.pk,)
         current_semester = Semester.objects.get(is_current_semester=True)
 
         courses = Course.objects.filter(program__pk=student.department.id, level=student.level, semester=current_semester

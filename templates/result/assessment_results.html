@@ -41,7 +41,7 @@
         <th>Total</th>
       </tr>
     </thead>
-    {% for course in courses %}
+    {% for courses in course %}
     {% if course.course.semester == "First" %}
     <tbody>
       <tr class="{% if forloop.counter|divisibleby:2 %}bg-gray{% endif %}">
@@ -83,7 +83,7 @@
         <th>Total</th>
       </tr>
     </thead>
-    {% for course in courses %}
+    {% for courses in course %}
     {% if course.course.semester == "Second" %}
     <tbody>
       <tr>
