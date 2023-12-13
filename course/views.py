@@ -31,7 +31,7 @@ def program_view(request):
         programs = Program.objects.filter(title__icontains=program_filter)
 
     return render(request, 'course/program_list.html', {
-        'title': "Programs | DjangoSMS",
+        'title': "Dasturlar | Student LMS",
         'programs': programs,
     })
 
@@ -43,15 +43,15 @@ def program_add(request):
         form = ProgramForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, request.POST.get('title') + ' program has been created.')
+            messages.success(request, request.POST.get('title') + ' dasturi muvafaqiyatli yaratilindi!')
             return redirect('programs')
         else:
-            messages.error(request, 'Correct the error(S) below.')
+            messages.error(request, 'Iltimos quyidagi xatolikni bartaraf e\'ting')
     else:
         form = ProgramForm()
 
     return render(request, 'course/program_add.html', {
-        'title': "Add Program | DjangoSMS",
+        'title': "Dastur qo'shish | Student LMS",
         'form': form,
     })
 
@@ -82,13 +82,13 @@ def program_edit(request, pk):
         form = ProgramForm(request.POST, instance=program)
         if form.is_valid():
             form.save()
-            messages.success(request, str(request.POST.get('title')) + ' program has been updated.')
+            messages.success(request, str(request.POST.get('title')) + ' muvafaqiyatli taxrirlandi!')
             return redirect('programs')
     else:
         form = ProgramForm(instance=program)
 
     return render(request, 'course/program_add.html', {
-        'title': "Edit Program | DjangoSMS",
+        'title': "Dastur taxrirlash | Student LMS",
         'form': form
     })
 
@@ -99,7 +99,7 @@ def program_delete(request, pk):
     program = Program.objects.get(pk=pk)
     title = program.title
     program.delete()
-    messages.success(request, 'Program ' + title + ' has been deleted.')
+    messages.success(request, 'Dastur: ' + title + ' muvafaqiyatli o\'chirildi!')
 
     return redirect('programs')
 # ########################################################
@@ -136,15 +136,15 @@ def course_add(request, pk):
         course_code = request.POST.get('code')
         if form.is_valid():
             form.save()
-            messages.success(request, (course_name + '(' + course_code + ')' + ' has been created.'))
+            messages.success(request, (course_name + '(' + course_code + ')' + ' muvafaqiyatli qo\'shildi!'))
             return redirect('program_detail', pk=request.POST.get('program'))
         else:
-            messages.error(request, 'Correct the error(s) below.')
+            messages.error(request, 'Iltimos xatoliklni bartaraf e\'ting')
     else:
         form = CourseAddForm(initial={'program': Program.objects.get(pk=pk)})
 
     return render(request, 'course/course_add.html', {
-        'title': "Add Course | DjangoSMS",
+        'title': "Kurs qo'shish | Student LMS",
         'form': form, 'program': pk, 'users': users
     }, )
 
@@ -159,15 +159,15 @@ def course_edit(request, slug):
         course_code = request.POST.get('code')
         if form.is_valid():
             form.save()
-            messages.success(request, (course_name + '(' + course_code + ')' + ' has been updated.'))
+            messages.success(request, (course_name + '(' + course_code + ')' + ' muvafaqiyatli taxrirlandi'))
             return redirect('program_detail', pk=request.POST.get('program'))
         else:
-            messages.error(request, 'Correct the error(s) below.')
+            messages.error(request, 'Iltimos xatolikni bartaraf eting!')
     else:
         form = CourseAddForm(instance=course)
 
     return render(request, 'course/course_add.html', {
-        'title': "Edit Course | DjangoSMS",
+        'title': "Kursni taxrirlash | Student LMS",
         # 'form': form, 'program': pk, 'course': pk
         'form': form
     }, )
@@ -179,7 +179,7 @@ def course_delete(request, slug):
     course = Course.objects.get(slug=slug)
     # course_name = course.title
     course.delete()
-    messages.success(request, 'Course ' + course.title + ' has been deleted.')
+    messages.success(request, 'Kurs ' + course.title + ' o`chirildi!')
 
     return redirect('program_detail', pk=course.program.id)
 # ########################################################

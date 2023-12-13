@@ -46,7 +46,7 @@ class CourseAllocationForm(forms.ModelForm):
     lecturer = forms.ModelChoiceField(
         queryset=User.objects.filter(is_lecturer=True),
         widget=forms.Select(attrs={'class': 'browser-default custom-select'}),
-        label="lecturer",
+        label="Ustoz",
     )
 
     class Meta:
@@ -68,7 +68,7 @@ class EditCourseAllocationForm(forms.ModelForm):
     lecturer = forms.ModelChoiceField(
         queryset=User.objects.filter(is_lecturer=True),
         widget=forms.Select(attrs={'class': 'browser-default custom-select'}),
-        label="lecturer",
+        label="Ustoz",
     )
 
     class Meta:
