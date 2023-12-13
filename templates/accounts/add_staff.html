@@ -4,10 +4,10 @@
 {% load static %}
 
 {% block content %}
-<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Home</a> <i>&rsaquo;</i> 
-    <a href="{% url 'lecturer_list' %}" class="primary1">Lecturers</a> <i>&rsaquo;</i> Add</div>
+<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Bosh saxifa</a> <i>&rsaquo;</i> 
+    <a href="{% url 'lecturer_list' %}" class="primary1">Ustozlar</a> <i>&rsaquo;</i> Qo'shish</div>
 <br>
-<div class="title-1"><i class="fas fa-chalkboard-teacher"></i>Lecturer Add Form</div>
+<div class="title-1"><i class="fas fa-chalkboard-teacher"></i>Ustoz qo'shish shakli</div>
 <div class="title-line"></div><br>
 
 {% if messages %}
@@ -28,12 +28,12 @@
     <div class="row mb-3">
         <div class="col-md-6">
             <div class="card">
-                <p class="form-title">Login Info</p>
+                <p class="form-title">Kirish malumotlari</p>
                 <div class="p-2">
                     <div class="form-group">
                         <b>ID No.</b>{{ form.username }}
                         <span class="danger">{{ form.username.errors }}</span>
-                        <p class="text-muted-xs">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</p>
+                        <p class="text-muted-xs"></p>
                     </div>
                     <div class="form-group">
                         <b>{{ form.password1.label }}</b>{{ form.password1 }}

@@ -3,13 +3,13 @@
 
 {% block content %}
 
-<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Home</a> <i>&rsaquo;</i> Lecturers</div>
+<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Boshsaxifa</a> <i>&rsaquo;</i> Ustozlar</div>
 
 {% if request.user.is_superuser %}
-<a class="add-button" href="{% url 'add_lecturer' %}"><i class="fas fa-plus"></i>Add Lecturer</a>
+<a class="add-button" href="{% url 'add_lecturer' %}"><i class="fas fa-plus"></i>Ustoz qo'shish</a>
 {% endif %}
 
-<p class="title-1"><i class="fas fa-chalkboard-teacher"></i>Lecturers List</p>
+<p class="title-1"><i class="fas fa-chalkboard-teacher"></i>Ustozlar ro'yxati</p>
 <div class="title-line"></div>
 
 {% if messages %}
@@ -29,10 +29,10 @@
 <div class="content-center">
     <form class="search-form" action="" method="POST">{% csrf_token %}
         <input class="au-input" type="text" name="id_no" placeholder="ID No." value="{{ request.GET.id_no }}"/>
-        <input class="au-input" type="text" name="name" placeholder="Name" value="{{ request.GET.name }}"/>
-        <input class="au-input" type="text" name="email" placeholder="Email" value="{{ request.GET.email }}"/>
+        <input class="au-input" type="text" name="name" placeholder="Ismi" value="{{ request.GET.name }}"/>
+        <input class="au-input" type="text" name="email" placeholder="Email manzil" value="{{ request.GET.email }}"/>
         <button class="btn btn-light" type="submit">
-            <i class="fas fa-search"></i> filter
+            <i class="fas fa-search"></i> Izlash
         </button>
     </form>
 </div>
@@ -41,15 +41,15 @@
     <table class="table">
         <thead>
             <tr>
-                <th>#</th>
+                <th>№</th>
                 <th> ID No. </th>
-                <th> Full Name </th>
-                <th> Email </th>
-                <th> Mob No. </th>
-                <th> Address/city </th>
+                <th> F.I.O </th>
+                <th> Email manzil </th>
+                <th> Telefon No. </th>
+                <th> Manzil/xonadon </th>
                 <th> Last login </th>
                 {% if request.user.is_superuser %}
-                <th> Action </th>
+                <th> Urinish </th>
                 {% endif %}
             </tr>
         </thead>
@@ -80,11 +80,11 @@
                   <td></td>
                   <td>
                   <span class="text-danger">
-                    <i class="far fa-frown"></i>No Lecturer(s).
+                    <i class="far fa-frown"></i>Ustozlar mavjud emas!
                     {% if request.user.is_superuser %}
                     <a href="{% url 'add_lecturer' %}">
                     <i class="primary" style="font-size: 22px;">
-                       Add Lecturer Now.
+                       Ustoz qo'shish uchun!
                     </i>
                     {% endif %}
                     </a>

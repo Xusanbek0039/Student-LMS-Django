@@ -5,10 +5,10 @@
 
 {% block content %}<br>
 
-<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Home</a> <i>&rsaquo;</i> 
-    <a href="{% url 'student_list' %}" class="primary1">Students </a><i>&rsaquo;</i> Account setting
+<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Bosh saxifa</a> <i>&rsaquo;</i> 
+    <a href="{% url 'student_list' %}" class="primary1">Talabalar </a><i>&rsaquo;</i> Hisob sozlamalari
 </div>
-<p class="title-1"><i class="fas fa-cogs"></i>Student Update Form</p>
+<p class="title-1"><i class="fas fa-cogs"></i>Talabani yangilash shakli</p>
 <div class="title-line"></div><br>
 
 {% if messages %}
@@ -29,7 +29,7 @@
     <div class="row mb-3">
         <div class="col-md-6">
             <div class="card">
-            <p class="form-title">Email & Personal Info</p>
+            <p class="form-title">Email &Shaxsiy malumotlar</p>
 
             <div class="p-3">
                 <div class="form-group">
@@ -58,16 +58,16 @@
         </div>
         <div class="col-md-6">
             <div class="card">
-            <p class="form-title">Others</p>
+            <p class="form-title">Boshqalar</p>
             <div class="p-3">
                 <div class="form-group">
-                    <b>Profile Picture</b><br>{{ form.picture }}
+                    <b>Hisob uchun photo</b><br>{{ form.picture }}
                     <span class="danger">{{ form.picture.errors }}</span>
                 </div>
             </div>
             </div>
         </div>
     </div>
-    <center><input class="btn btn-outline-primary" type="submit" value="Save"></center>
+    <center><input class="btn btn-outline-primary" type="submit" value="Saqlash"></center>
 </form>
 {% endblock content %}
