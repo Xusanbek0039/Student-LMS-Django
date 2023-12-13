@@ -8,8 +8,8 @@ NEWS = "News"
 EVENTS = "Event"
 
 POST = (
-    (NEWS, "News"),
-    (EVENTS, "Event"),
+    (NEWS, "Yangilik"),
+    (EVENTS, "Voqea"),
 )
 
 FIRST = "First"
@@ -17,9 +17,9 @@ SECOND = "Second"
 THIRD = "Third"
 
 SEMESTER = (
-    (FIRST, "First"),
-    (SECOND, "Second"),
-    (THIRD, "Third"),
+    (FIRST, "Birinchi"),
+    (SECOND, "Ikkinchi"),
+    (THIRD, "Uchinchi"),
 )
 
 

@@ -15,7 +15,7 @@ from .models import *
 def home_view(request):
     items = NewsAndEvents.objects.all().order_by('-updated_date')
     context = {
-        'title': "News & Events | DjangoSMS",
+        'title': "Yangilik & Voqea | Student LMS",
         'items': items,
     }
     return render(request, 'app/index.html', context)
@@ -29,14 +29,14 @@ def post_add(request):
         if form.is_valid():
             form.save()
 
-            messages.success(request, (title + ' has been uploaded.'))
+            messages.success(request, (title + ' joylandi!'))
             return redirect('home')
         else:
-            messages.error(request, 'Please correct the error(s) below.')
+            messages.error(request, 'Iltimos xatolikni bartaraf eting!')
     else:
         form = NewsAndEventsForm()
     return render(request, 'app/post_add.html', {
-        'title': 'Add Post | DjangoSMS',
+        'title': 'Post joylash | Student LMS',
         'form': form,
     })
 
@@ -51,14 +51,14 @@ def edit_post(request, pk):
         if form.is_valid():
             form.save()
 
-            messages.success(request, (title + ' has been updated.'))
+            messages.success(request, (title + ' taxrirlandi!'))
             return redirect('home')
         else:
-            messages.error(request, 'Please correct the error(s) below.')
+            messages.error(request, 'Iltimos xatolikni bartaraf eting!')
     else:
         form = NewsAndEventsForm(instance=instance)
     return render(request, 'app/post_add.html', {
-        'title': 'Edit Post | DjangoSMS',
+        'title': 'Post taxrirlash | Student LMS',
         'form': form,
     })
 
@@ -69,7 +69,7 @@ def delete_post(request, pk):
     post = get_object_or_404(NewsAndEvents, pk=pk)
     title = post.title
     post.delete()
-    messages.success(request, (title + ' has been deleted.'))
+    messages.success(request, (title + ' o\'chirildi!'))
     return redirect('home')
 
 # ########################################################
@@ -78,7 +78,7 @@ def delete_post(request, pk):
 @login_required
 @lecturer_required
 def session_list_view(request):
-    """ Show list of all sessions """
+    
     sessions = Session.objects.all().order_by('-is_current_session', '-session')
     return render(request, 'app/session_list.html', {"sessions": sessions})
 
