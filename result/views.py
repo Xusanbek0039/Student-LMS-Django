@@ -32,11 +32,7 @@ cm = 2.54
 @login_required
 @lecturer_required
 def add_score(request):
-    """ 
-    Shows a page where a lecturer will select a course allocated to him for score entry.
-    in a specific semester and session 
 
-    """
     current_session = Session.objects.get(is_current_session=True)
     current_semester = get_object_or_404(Semester, is_current_semester=True, session=current_session)
     # semester = Course.objects.filter(allocated_course__lecturer__pk=request.user.id, semester=current_semester)
@@ -71,7 +67,7 @@ def add_score_for(request, id):
         students = TakenCourse.objects.filter(course__allocated_course__lecturer__pk=request.user.id).filter(
             course__id=id).filter(course__semester=current_semester)
         context = {
-            "title": "Submit Score | DjangoSMS",
+            "title": "Hisobni yuborish | Student LMS",
             "courses": courses,
             "course": course,
             # "myclass": myclass,
@@ -169,9 +165,9 @@ def grade_result(request):
     total_first_semester_credit = 0
     total_sec_semester_credit = 0
     for i in courses:
-        if i.course.semester == "First":
+        if i.course.semester == "Birinchi":
             total_first_semester_credit += int(i.course.credit)
-        if i.course.semester == "Second":
+        if i.course.semester == "Ikkinchi":
             total_sec_semester_credit += int(i.course.credit)
 
     previousCGPA = 0
@@ -180,7 +176,7 @@ def grade_result(request):
     for i in results:
         previousLEVEL = i.level
         try:
-            a = Result.objects.get(student__student__pk=request.user.id, level=previousLEVEL, semester="Second")
+            a = Result.objects.get(student__student__pk=request.user.id, level=previousLEVEL, semester="Uchinchi")
             previousCGPA = a.cgpa
             break
         except:

@@ -43,7 +43,7 @@ class SemesterForm(forms.ModelForm):
     )
     is_current_semester = forms.CharField(
         widget=forms.Select(
-            choices=((True, 'Yes'), (False, 'No')),
+            choices=((True, 'Ha'), (False, 'Yo\'q')),
             attrs={
                 'class': 'browser-default custom-select',
             }
