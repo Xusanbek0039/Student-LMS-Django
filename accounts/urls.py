@@ -3,6 +3,7 @@ from django.contrib.auth.views import (
     PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, 
     PasswordResetCompleteView, LoginView, LogoutView
     )
+from django.contrib.auth.views import LogoutView
 from .views import (
         profile, profile_single, admin_panel, 
         profile_update, change_password, 
