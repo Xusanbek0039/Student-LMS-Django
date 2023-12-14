@@ -43,7 +43,7 @@
         <a href="{% url 'home' %}"><i class="fas fa-home"></i>Bosh saxifa</a>
       </li>
       <li class="{% if request.path == prof %}active{% endif %}">
-        <a href="{% url 'profile' %}"><i class="fas fa-user"></i>Hisob</a>
+        <a href="{% url 'edit_profile' %}"><i class="fas fa-user"></i>Hisob</a>
       </li>
 
       {% if request.user.is_superuser %}

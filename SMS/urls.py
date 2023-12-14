@@ -24,6 +24,6 @@ if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-# handler404 = 'app.views.handler404'
-# handler500 = 'app.views.handler500'
-# handler400 = 'app.views.handler400'
+handler404 = 'app.views.handler404'
+handler500 = 'app.views.handler500'
+handler400 = 'app.views.handler400'

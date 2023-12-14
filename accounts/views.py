@@ -59,14 +59,9 @@ def profile(request):
         })
     elif request.user.is_student:
         level = Student.objects.get(student__pk=request.user.id)
-        try:
-            parent = Parent.objects.get(student=level)
-        except:
-            parent = "no parent set"
         courses = TakenCourse.objects.filter(student__student__id=request.user.id, course__level=level.level)
         context = {
             'title': request.user.get_full_name,
-            'parent': parent,
             'courses': courses,
             'level': level,
             'current_session': current_session,
@@ -81,7 +76,6 @@ def profile(request):
             'current_session': current_session,
             'current_semester': current_semester,
         })
-
 
 @login_required
 @admin_required
