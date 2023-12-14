@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load i18n %}
-{% block title %}{% trans "All Quizzes" %}{% endblock %}
+{% block title %}{% trans "Barcha testlar" %}{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -15,22 +15,22 @@
 <form action="" method="GET" class="form-inline justify-content-center bg-white p-4 my-3">
 	<input type="text" name="user_filter" class="form-control" placeholder="User" value="{{ request.GET.user_filter }}">
 	<input type="text" name="quiz_filter" class="form-control" placeholder="Quiz" value="{{ request.GET.quiz_filter }}">
-	<button type="submit" class="btn btn-outline-secondary">{% trans "Filter"%}</button>
+	<button type="submit" class="btn btn-outline-secondary">{% trans "Izlash"%}</button>
 </form>
 
 {% if sitting_list %}
 
-	<div class="info-text bg-danger my-2">Total complete exams: {{ sitting_list.count }}</div>
+	<div class="info-text bg-danger my-2">Umumiy to'liq imtihonlar: {{ sitting_list.count }}</div>
 
 	<table class="table table-bordered table-striped">
 		<thead>
 			<tr>
-				<th>#</th>
-				<th>{% trans "User" %}</th>
-				<th>{% trans "Course" %}</th>
-				<th>{% trans "Quiz" %}</th>
-				<th>{% trans "Completed" %}</th>
-				<th>{% trans "Score" %}(%)</th>
+				<th>№</th>
+				<th>{% trans "Foydalanuvchi" %}</th>
+				<th>{% trans "Kurs" %}</th>
+				<th>{% trans "test" %}</th>
+				<th>{% trans "Topshirilgan" %}</th>
+				<th>{% trans "Natija" %}(%)</th>
 				<th></th>
 			</tr>
 		</thead>
@@ -45,7 +45,7 @@
 			<td>{{ sitting.get_percent_correct }}%</td>
 			<td>
 			<a href="{% url 'quiz_marking_detail' pk=sitting.id %}">
-				{% trans "View details" %}
+				{% trans "Ko'proq ko'rish" %}
 			</a>
 		</tr>
 		{% endfor %}
@@ -53,7 +53,7 @@
 
 	</table>
 {% else %}
-	<p class="p-3 bg-light">{% trans "There are no matching results for your search..." %}.</p>
+	<p class="p-3 bg-light">{% trans "Qidiruvingizga mos natijalar topilmadi..." %}.</p>
 {% endif %}
 </div>
 {% endblock %}
