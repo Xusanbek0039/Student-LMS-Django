@@ -2,62 +2,62 @@
 
 {% block content %}
 
-<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Home</a> <i>&rsaquo;</i> 
-    <a href="{% url 'programs' %}" class="primary1"> Programs</a> <i>&rsaquo;</i> 
+<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Boshs axifa</a> <i>&rsaquo;</i> 
+    <a href="{% url 'programs' %}" class="primary1"> Dasturlar</a> <i>&rsaquo;</i> 
     <a href="{% url 'program_detail' course.program.id %}" class="primary1"> {{ course.program }}</a> <i>&rsaquo;</i> 
     <a href="{{ course.get_absolute_url }}" class="primary1">{{ course }}</a> <i>&rsaquo;</i> 
-    <a href="{% url 'quiz_index' course.slug %}" class="primary1">Quiz list</a> <i>&rsaquo;</i> MC Question add for {{ quiz_obj }}</div>
+    <a href="{% url 'quiz_index' course.slug %}" class="primary1">Testlar ro'yxati</a> <i>&rsaquo;</i> MC savoliga qo'shingr {{ quiz_obj }}</div>
 
 <div class="container">
 
-    <div class="header-title-xl text-center mt-4">Questions form for {{ quiz_obj }}</div>
+    <div class="header-title-xl text-center mt-4">Savollar shakli {{ quiz_obj }}</div>
     <div class="title-line mb-5"></div>
 
-    <div class="info-text bg-orange mb-3">{{ quizQuestions }} question added</div>
+    <div class="info-text bg-orange mb-3">{{ quizQuestions }} savol qo'shildi!</div>
 
     <form action="#" method="POST">{% csrf_token %}
-        {% if form.errors %}<p class="alert alert-danger">Correct the error(s) below.</p>{% endif %}
+        {% if form.errors %}<p class="alert alert-danger">Quyidagi xatolarni tuzating.</p>{% endif %}
         <div class="row">
             <div class="col mx-3 py-4 border bg-white">
                 <div class="form-group" hidden>
                     <label for="title">{{ form.quiz.label }}</label> {{ form.quiz }}
                     <span class="danger">{{ form.quiz.errors }}</span>
-                    <small class="d-block text-muted">Hold down "Control", or "Command" on a Mac, to select more than one.</small>
+                    <small class="d-block text-muted">Bir nechtasini tanlash uchun Mac-da “Boshqarish” yoki “Buyruq” tugmasini bosib turing.</small>
                 </div>
                 <div class="form-group">
                     <label for="content">{{ form.content.label }}</label> {{ form.content }}
                     <span class="danger">{{ form.content.errors }}</span>
-                    <small class="d-block text-muted">Enter the question text that you want displayed.</small>
+                    <small class="d-block text-muted">Ko'rsatilishini xohlagan savol matnini kiriting.</small>
                 </div>
                 <div class="form-group">
                     <label for="figure">{{ form.figure.label }}</label> {{ form.figure }}
                     <span class="danger">{{ form.figure.errors }}</span>
-                    <small class="d-block text-muted">Add an image for the question if it's necessary.</small>
+                    <small class="d-block text-muted">Agar kerak bo'lsa, savol uchun rasm qo'shing.</small>
                 </div>
                 <div class="form-group">
                     <label for="explanation">{{ form.explanation.label }}</label> {{ form.explanation }}
                     <span class="danger">{{ form.explanation.errors }}</span>
-                    <small class="d-block text-muted">Explanation to be shown after the question has been answered.</small>
+                    <small class="d-block text-muted">Savolga javob berilgandan keyin tushuntirish ko'rsatiladi.</small>
                 </div>
             </div>
             <div class="col mx-3 py-4 border bg-white">
                 <div class="form-group">
                     <label for="choice_order">{{ form.choice_order.label }}</label> {{ form.choice_order }}
                     <span class="danger">{{ form.choice_order.errors }}</span>
-                    <small class="d-block text-muted">The order in which multichoice choice options are displayed to the user.</small>
+                    <small class="d-block text-muted">Ko'p tanlovli tanlov variantlari foydalanuvchiga ko'rsatiladigan tartib.</small>
                 </div>
                 <div class="border py-3">
-                    <div class="lead text-center">Choices</div>
+                    <div class="lead text-center">Tanlovlar</div>
                 {{ formset.management_form }}
                 {% for fs in formset %}
                     <label for="username">{{ fs.label }}</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text">{{ fs.correct }} <small class="ml-1">Correct</small></span>
+                            <span class="input-group-text">{{ fs.correct }} <small class="ml-1">To'g'ri</small></span>
                         </div>
                         {{ fs.choice }}
                         <div class="input-group-prepend">
-                            <span class="input-group-text">{{ fs.DELETE }} <small class="ml-1">Delete</small></span>
+                            <span class="input-group-text">{{ fs.DELETE }} <small class="ml-1">O'chirish</small></span>
                         </div>
                     </div>
                 {% endfor %}
@@ -66,9 +66,9 @@
         </div>
         <center>
             <button type="submit" formnovalidate name="another" class="btn btn-lg btn-outline-primary">
-                Save and add another
+                Saqlash va boshqasini qo'shish
             </button>
-            <button class="btn btn-lg btn-primary my-4" type="submit">Save</button>
+            <button class="btn btn-lg btn-primary my-4" type="submit">Saqlash</button>
         </center>
 
         <!-- <h3>FormSet example</h3>
