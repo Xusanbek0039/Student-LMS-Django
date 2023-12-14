@@ -6,7 +6,7 @@
     <a href="{% url 'programs' %}" class="primary1"> Dasturlar</a> <i>&rsaquo;</i> 
     <a href="{% url 'program_detail' course.program.id %}" class="primary1"> {{ course.program }}</a> <i>&rsaquo;</i> 
     <a href="{{ course.get_absolute_url }}" class="primary1">{{ course }}</a> <i>&rsaquo;</i> 
-    <a href="{% url 'quiz_index' course.slug %}" class="primary1">Testlar ro'yxati</a> <i>&rsaquo;</i> MC savoliga qo'shingr {{ quiz_obj }}</div>
+    <a href="{% url 'quiz_index' course.slug %}" class="primary1">Testlar ro'yxati</a> <i>&rsaquo;</i> MC savoliga qo'shing {{ quiz_obj }}</div>
 
 <div class="container">
 
