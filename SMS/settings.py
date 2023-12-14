@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 import posixpath
 
-
+from pathlib import Path
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -67,6 +67,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRED_PARTY_APPS + PROJECT_APPS
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', # new whitenoise bu staticfiles ni middlewarega qoshish 
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -167,10 +168,12 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 STATIC_ROOT = posixpath.join(*(BASE_DIR.split(os.path.sep) + ['staticfiles']))
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
+STATIC_ROOT = str(BASE_DIR.joinpath('staticfiles')) # new
+STATICFILES_STORAGE ='whitenoise.storage.CompressedManifestStaticFilesStorage' # new
 # -----------------------------------
 # E-mail configuration
 
