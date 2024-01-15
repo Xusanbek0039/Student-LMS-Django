@@ -4,10 +4,6 @@ from django.contrib.auth.decorators import user_passes_test
 
 
 def student_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, login_url=Http404):
-    """
-     Tizimga kirgan foydalanuvchi talaba ekanligini tekshiradigan ko'rinishlar uchun dekorator,
-     agar kerak bo'lsa, kirish sahifasiga yo'naltiradi.
-     """
     actual_decorator = user_passes_test(
         lambda u: u.is_active and u.is_student or u.is_superuser,
         login_url=login_url,
@@ -19,10 +15,6 @@ def student_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, log
 
 
 def lecturer_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, login_url=Http404):
-    """
-     Tizimga kirgan foydalanuvchi o'qituvchi ekanligini tekshiradigan ko'rinishlar uchun dekorator,
-     agar kerak bo'lsa, kirish sahifasiga yo'naltiradi.
-     """
     actual_decorator = user_passes_test(
         lambda u: u.is_active and u.is_lecturer or u.is_superuser,
         login_url=login_url,
@@ -34,10 +26,6 @@ def lecturer_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, lo
 
 
 def admin_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, login_url=Http404):
-    """
-     Tizimga kirgan foydalanuvchi o'qituvchi ekanligini tekshiradigan ko'rinishlar uchun dekorator,
-     agar kerak bo'lsa, kirish sahifasiga yo'naltiradi.
-     """
     actual_decorator = user_passes_test(
         lambda u: u.is_active and u.is_superuser,
         login_url=login_url,
