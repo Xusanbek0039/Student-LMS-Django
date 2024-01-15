@@ -119,7 +119,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'malumotlar-bazasi.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -201,6 +201,3 @@ REST_FRAMEWORK = {
     ]
 }
 
-# # Strip payment config
-# STRIPE_SECRET_KEY = env('STRIPE_SECRET_KEY')
-# STRIPE_PUBLISHABLE_KEY = env('STRIPE_PUBLISHABLE_KEY')
