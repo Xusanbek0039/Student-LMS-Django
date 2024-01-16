@@ -2,6 +2,7 @@
 {% load crispy_forms_tags %}
 {% block content %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,17 +16,20 @@
 
     <body>
         <section>
-            <form>
+            <form>{% csrf_token %}
                 <h1>Hisobga kirish</h1>
                 <div class="inputbox">
                     <ion-icon name="mail-outline"></ion-icon>
-                    <input type="email" required>
-                    <label for="">Email manzil</label>
+                    <input type="username" required>
+                    <label for="username_id">Email manzil</label>
                 </div>
                 <div class="inputbox">
                     <ion-icon name="lock-closed-outline"></ion-icon>
                     <input type="password" required>
                     <label for="">Parolingiz</label>
+                    {% if form.errors %}
+                    <span class="text-danger"><i class="fas fa-exclamation-circle"></i> ID nomer & Parol.</span><br>
+                    {% endif %}
                 </div>
                 <div class="forget">
                     <label for=""><input type="checkbox"> Eslab qolish!</label>
