@@ -1,51 +1,59 @@
-
+{% extends 'registration/registration_base.html' %}
+{% block title %}Student LMS - Hisobga kirish{% endblock title %}
 {% load crispy_forms_tags %}
 {% block content %}
-{% load static %}
-{% load crispy_forms_tags %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/kiris.css' %}">
-    
-    <title>Student LMS | Hisobga kirish</title>
-</head>
+<div id="login">
+  <div class="login-title blue-gradient"><i class="fas fa-lock"></i>Hisobga kirish</div>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/kiris.css' %}">
+  <form action="" method="POST" id="login-form">{% csrf_token %}
+    <div class="form-group px-3">
+        <label for="username_id"><i class="fas fa-address-card"></i>Foydalanuvchi nomi</label>
+        <input type="text" name="username" id="username_id" class="form-control" required>
+        <div id="message-wrapper"></div>
+    </div>
+    <div class="form-group px-3">
+        <label for="password_id"><i class="fas fa-key"></i>Foydalanuvchi parol</label>
+        <input type="password" name="password" id="password_id" class="form-control" required>
+    </div>
 
-    <body>
-        <section>
-            <form>{% csrf_token %}
-                <h1>Hisobga kirish</h1>
-                <div class="inputbox">
-                    <ion-icon name="mail-outline"></ion-icon>
-                    <input type="username" required>
-                    <label for="username_id">Email manzil</label>
-                </div>
-                <div class="inputbox">
-                    <ion-icon name="lock-closed-outline"></ion-icon>
-                    <input type="password" required>
-                    <label for="">Parolingiz</label>
-                    {% if form.errors %}
-                    <span class="text-danger"><i class="fas fa-exclamation-circle"></i> ID nomer & Parol.</span><br>
-                    {% endif %}
-                </div>
-                <div class="forget">
-                    <label for=""><input type="checkbox"> Eslab qolish!</label>
-                  <a href="#">Parolni unutdim!</a>
-                </div>
-                <button type="submit" class="btn btn-primary" id="login-btn"><i class="fas fa-sign-in-alt"></i><small> Kirish</small></button>
-                <div class="register">
-                    <p>Hisob mavjud bo'lmasa <a href="#">bu yerga teging iltimos!</a></p>
-                </div>
-            </form>
-        </section>
-        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    </body>
-
-</html>
+    <button type="submit" class="btn btn-primary" id="login-btn"><i class="fas fa-sign-in-alt"></i><small> Kirish</small></button>
+  </form>
+  <br>
+  <a href="https://t.me/mBin_Dev_0071" class="link">Parol esdan chiqdimi ? --</a>
+  <a href="https://t.me/mBin_Dev_0071" class = "link">Tizim admini bilan a'loqa!</a>
+</div>
 {% endblock content %}
 
+{% block js %}
 
+<script>
+  $('#login-form').submit(function (e) {
+    // e.preventDefault();
+    $('#login-btn').addClass('disabled')
+    $('#login-btn').html(`<i class="fas fa-sign-in-alt"></i> Hisob tekshirilmoqda. . .`)
+  })
+
+  $("#username").on("input", function () {
+    username = $(this).val();
+
+    $.ajax({
+      url: "/accounts/ajax/validate-username/",
+      data: {
+        username: username
+      },
+      dataType: 'json',
+      success: function (data) {
+        if (data.is_taken) {
+          console.log(data.is_taken);
+          $('#message-wrapper').html(`<p class="my-2 text-danger"><span class="bg-error p-2"><b>${username}</b> already taken :( try another one </span></p>`)
+        }
+        else {
+          $('#message-wrapper').html(`<p class="my-2 text-success"><span class="bg-correct p-2"><b>${username}</b> is valid </span></p>`)
+        }
+      }
+
+    })
+  })
+</script>
+{% endblock %}
