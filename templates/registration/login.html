@@ -3,25 +3,41 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<div id="login">
-  <div class="login-title blue-gradient"><i class="fas fa-lock"></i>Hisobga kirish</div>
 
-  <form action="" method="POST" id="login-form">{% csrf_token %}
-    <div class="form-group px-3">
-        <label for="username_id"><i class="fas fa-address-card"></i>Foydalanuvchi nomi</label>
-        <input type="text" name="username" id="username_id" class="form-control" required>
-        <div id="message-wrapper"></div>
-    </div>
-    <div class="form-group px-3">
-        <label for="password_id"><i class="fas fa-key"></i>Foydalanuvchi parol</label>
-        <input type="password" name="password" id="password_id" class="form-control" required>
-    </div>
 
-    <button type="submit" class="btn btn-primary" id="login-btn"><i class="fas fa-sign-in-alt"></i><small> Kirish</small></button>
-  </form>
-  <br>
-  <a href="https://t.me/mBin_Dev_0071" class="link">Parol esdan chiqdimi ? --</a>
-  <a href="https://t.me/mBin_Dev_0071" class = "link">Tizim admini bilan a'loqa!</a>
+
+
+
+<div class="col-md-4 mx-auto mt-5">
+  <div class="card">
+    <div class="form-title">
+      <i class="fas fa-lock me-2"></i>
+      Tizimga kirish
+    </div>
+    <div class="card-body">
+        <form action="" method="POST" id="login-form">{% csrf_token %}
+          <div class="form-group mb-3">
+              <label class="mb-2" for="username_id"><i class="fas fa-address-card me-2"></i>ID Number</label>
+              <input type="text" name="username" id="username_id" class="form-control" required>
+              <div id="message-wrapper"></div>
+          </div>
+          <div class="form-group mb-3">
+              <label class="mb-2" for="password_id"><i class="fas fa-key me-2"></i>Parolingiz</label>
+              <input type="password" name="password" id="password_id" class="form-control" required>
+          </div>
+          {% if form.errors %}
+                <span class="text-danger"><i class="fas fa-exclamation-circle"></i> Ismingiz yoki Parolni xato kiritdingiz!</span><br>
+          {% endif %}
+      
+          <button type="submit" class="btn btn-primary" id="login-btn"><i class="fas fa-sign-in-alt"></i><small> Kirish</small></button>
+        </form>
+        <br>
+        <div class="login-bottom">
+          <a href="{% url 'password_reset' %}" class="link">Parolni unutdingizmi ?</a>
+          <a href="https://t.me/mBin_Dev_0071" class = "link">Adminga xat!</a>
+        </div>
+      </div>
+  </div>
 </div>
 {% endblock content %}
 
